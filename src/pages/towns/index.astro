@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import TownCard from '../../components/TownCard.astro';
+import { getCollection } from 'astro:content';
+
+const allTowns = await getCollection('towns');
+const allContractors = await getCollection('contractors');
+
+const towns = allTowns.map(town => ({
+  ...town,
+  contractorCount: allContractors.filter(c => c.data.townsServed.includes(town.data.slug)).length,
+})).sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const cphs = towns.filter(t => t.data.healthServiceProvider === 'cphs');
+const independent = towns.filter(t => t.data.healthServiceProvider === 'independent');
+const foothills = towns.filter(t => t.data.healthServiceProvider === 'foothills');
+const withLocalRegs = towns.filter(t => t.data.hasLocalSepticRegs);
+---
+
+<BaseLayout
+  title="Septic Regulations by Town — Franklin County, MA"
+  description="Look up septic regulations for all 26 towns in Franklin County, MA. Find your Board of Health, local rules, and contractors serving your area."
+>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Towns' },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Septic Rules by Town — Franklin County, MA</h1>
+    <p class="text-gray-500 mb-8">Select your town to find local Board of Health contacts, septic regulations, and contractors serving your area.</p>
+
+    {withLocalRegs.length > 0 && (
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 text-sm text-amber-800">
+        <p class="font-semibold mb-1">Towns with stricter-than-Title-5 local regulations:</p>
+        <p>{withLocalRegs.map(t => t.data.name).join(', ')}</p>
+      </div>
+    )}
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-10">
+      {towns.map(town => (
+        <TownCard
+          name={town.data.name}
+          slug={town.data.slug}
+          hasMunicipalSewer={town.data.hasMunicipalSewer}
+          hasLocalSepticRegs={town.data.hasLocalSepticRegs}
+          healthServiceProvider={town.data.healthServiceProvider}
+          contractorCount={town.contractorCount}
+        />
+      ))}
+    </div>
+
+    <!-- Health service provider info -->
+    <div class="bg-white border border-gray-200 rounded-lg p-5 text-sm text-gray-600">
+      <h2 class="font-bold text-gray-800 mb-3">About Health Services in Franklin County</h2>
+      <div class="grid sm:grid-cols-3 gap-4">
+        <div>
+          <p class="font-semibold text-gray-700 mb-1">CPHS Towns ({cphs.length})</p>
+          <p class="text-xs mb-1">Served by the FRCOG Cooperative Public Health Service</p>
+          <p class="text-xs text-gray-500">{cphs.map(t => t.data.name).join(', ')}</p>
+        </div>
+        <div>
+          <p class="font-semibold text-gray-700 mb-1">Independent BOH ({independent.length})</p>
+          <p class="text-xs mb-1">Each town operates its own Board of Health</p>
+          <p class="text-xs text-gray-500">{independent.map(t => t.data.name).join(', ')}</p>
+        </div>
+        {foothills.length > 0 && (
+          <div>
+            <p class="font-semibold text-gray-700 mb-1">Foothills Health District ({foothills.length})</p>
+            <p class="text-xs text-gray-500">{foothills.map(t => t.data.name).join(', ')}</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

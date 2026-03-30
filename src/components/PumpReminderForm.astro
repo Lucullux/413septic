@@ -1,0 +1,90 @@
+---
+interface Props {
+  preselectedTown?: string;
+  compact?: boolean;
+}
+
+const { preselectedTown, compact = false } = Astro.props;
+
+const towns = [
+  'Ashfield','Bernardston','Buckland','Charlemont','Colrain','Conway',
+  'Deerfield','Erving','Gill','Greenfield','Hawley','Heath','Leverett',
+  'Leyden','Monroe','Montague','New Salem','Northfield','Orange','Rowe',
+  'Shelburne','Shutesbury','Sunderland','Warwick','Wendell','Whately',
+];
+---
+
+<div class={compact ? 'bg-earth-100 rounded-lg p-5 border border-earth-200' : 'bg-forest-50 border border-forest-200 rounded-xl p-6 md:p-8'}>
+  {!compact && (
+    <h2 class="text-xl font-bold text-forest-800 mb-1">Get a Reminder When It's Time to Pump</h2>
+    <p class="text-gray-600 text-sm mb-5">Free. No spam. Just a reminder when your system needs it.</p>
+  )}
+  {compact && (
+    <h3 class="text-base font-bold text-forest-800 mb-3">Free Pump Reminder</h3>
+  )}
+  <!-- Replace action URL with your ConvertKit/Mailchimp form action -->
+  <form class="space-y-3" action="https://design.us11.list-manage.com/subscribe/post?u=b5b8d3a94c49b2509f370a568&amp;id=61c593d395&amp;f_id=00edc2e1f0" method="post" name="pump-reminder">
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email address <span class="text-red-500">*</span></label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        placeholder="you@example.com"
+        class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-forest-500 focus:border-transparent"
+      />
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <div>
+        <label for="household_size" class="block text-sm font-medium text-gray-700 mb-1">Household size <span class="text-red-500">*</span></label>
+        <select
+          id="household_size"
+          name="household_size"
+          required
+          class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-forest-500 bg-white"
+        >
+          <option value="">Select...</option>
+          <option value="1-2">1–2 people</option>
+          <option value="3-4">3–4 people</option>
+          <option value="5+">5+ people</option>
+        </select>
+      </div>
+      <div>
+        <label for="last_pumped" class="block text-sm font-medium text-gray-700 mb-1">Last pumped</label>
+        <select
+          id="last_pumped"
+          name="last_pumped"
+          class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-forest-500 bg-white"
+        >
+          <option value="">Not sure</option>
+          <option value="under-1">Less than 1 year ago</option>
+          <option value="1-2">1–2 years ago</option>
+          <option value="3-4">3–4 years ago</option>
+          <option value="5+">5+ years ago</option>
+          <option value="never">Never / just bought the house</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <label for="town" class="block text-sm font-medium text-gray-700 mb-1">Your town</label>
+      <select
+        id="town"
+        name="town"
+        class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-forest-500 bg-white"
+      >
+        <option value="">Other / not sure</option>
+        {towns.map((t) => (
+          <option value={t.toLowerCase().replace(' ', '-')} selected={t.toLowerCase().replace(' ', '-') === preselectedTown}>{t}</option>
+        ))}
+      </select>
+    </div>
+    <button
+      type="submit"
+      class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-2.5 px-4 rounded transition-colors text-sm"
+    >
+      Send Me a Reminder
+    </button>
+  </form>
+  <p class="text-xs text-gray-500 mt-3">No spam. Unsubscribe anytime. Your information stays private.</p>
+</div>

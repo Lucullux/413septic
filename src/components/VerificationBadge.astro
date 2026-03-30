@@ -1,0 +1,23 @@
+---
+interface Props {
+  multiSourceVerified: boolean;
+  lastVerified?: string | null;
+  status: string;
+}
+
+const { multiSourceVerified, lastVerified, status } = Astro.props;
+---
+
+<div class="bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm">
+  <p class="font-semibold text-gray-700 mb-1">Listing Status</p>
+  {multiSourceVerified
+    ? <p class="text-forest-700"><span class="font-medium">✓ Multi-source verified</span> — found in 3+ independent sources</p>
+    : <p class="text-gray-500">Single-source listing — not yet cross-verified</p>
+  }
+  <p class="text-gray-500 mt-1">
+    Status: <span class={`font-medium ${status === 'active' ? 'text-forest-700' : status === 'possibly-closed' ? 'text-red-600' : 'text-amber-600'}`}>
+      {status === 'active' ? 'Active' : status === 'possibly-closed' ? 'Possibly closed' : status === 'unverified' ? 'Unverified' : 'Needs verification'}
+    </span>
+  </p>
+  {lastVerified && <p class="text-gray-400 text-xs mt-1">Last verified: {lastVerified}</p>}
+</div>

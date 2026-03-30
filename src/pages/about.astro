@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<BaseLayout
+  title="About 413Septic.com"
+  description="Why 413Septic.com exists — a local resource for western Massachusetts homeowners navigating septic systems, regulations, and contractors."
+>
+  <div class="max-w-2xl mx-auto px-4 py-10">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'About' },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">About 413Septic.com</h1>
+
+    <div class="prose prose-sm prose-a:text-forest-700 max-w-none text-gray-700 space-y-4">
+      <p>
+        I built this site because I couldn't find it when I needed it.
+      </p>
+      <p>
+        Like a lot of people in western Massachusetts, I own a home with a septic system. And like most
+        homeowners, I inherited a system I knew almost nothing about — when it was last pumped, whether
+        my town had any local regulations beyond state Title 5, or which contractors actually served
+        my area versus which ones would never return my calls.
+      </p>
+      <p>
+        When I started researching, I found the same frustrations over and over: Board of Health websites
+        that hadn't been updated in years, regulation documents buried in meeting minutes from 2009,
+        contractor listings on national sites that were outdated or just wrong, and no single place
+        that put it all together for Franklin County.
+      </p>
+      <p>
+        So I built that place.
+      </p>
+      <p>
+        413Septic.com covers all 26 towns in Franklin County, with information on local regulations,
+        Board of Health contacts, and contractors who actually serve the area. The contractor listings
+        are sourced from multiple independent directories and cross-verified — not just scraped from
+        one place. The regulation pages are sourced directly from town documents and BOH websites,
+        with dates and sources cited.
+      </p>
+      <p>
+        I'm not a septic professional. I'm a web designer who went down a research rabbit hole and
+        decided to make something useful out of it. The site is built to help homeowners make informed
+        decisions — not to generate leads or pretend to be something it isn't.
+      </p>
+      <p>
+        If you're a contractor and want to claim or update your listing, <a href="/contact/">reach out</a>.
+        If you find an error, please tell me — this information matters and I want it to be right.
+      </p>
+      <p>
+        — Zac, <a href="https://banaswebdesign.com" target="_blank" rel="noopener noreferrer">Banas Web Design</a>
+      </p>
+    </div>
+
+    <div class="mt-8 p-4 bg-earth-50 border border-earth-200 rounded-lg text-sm text-gray-600">
+      <p class="font-semibold text-gray-800 mb-1">Questions or corrections?</p>
+      <p>Use the <a href="/contact/" class="text-forest-700 hover:underline">contact form</a> or email directly. I read everything.</p>
+    </div>
+  </div>
+</BaseLayout>

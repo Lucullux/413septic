@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const towns = await getCollection('towns');
+  return towns.map(t => ({ params: { slug: t.data.slug }, props: { town: t } }));
+}
+
+const { town } = Astro.props;
+const { data } = town;
+const { Content } = await render(town);
+
+const providerLabel: Record<string, string> = {
+  independent: 'Independent Board of Health',
+  cphs: 'FRCOG Cooperative Public Health Service (CPHS)',
+  foothills: 'Foothills Health District',
+  unknown: 'Board of Health',
+};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: `Septic Regulations in ${data.name}, MA`,
+  about: { '@type': 'AdministrativeArea', name: `${data.name}, MA` },
+};
+---
+
+<BaseLayout
+  title={`Septic Regulations in ${data.name}, MA`}
+  description={`Local septic regulations for ${data.name}, MA. Board of Health contacts, Title 5 requirements, and any local additions. ${data.hasLocalSepticRegs ? 'Stricter local rules apply.' : ''}`}
+  schema={schema}
+>
+  <div class="max-w-3xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Towns', href: '/towns/' },
+      { label: data.name, href: `/towns/${data.slug}/` },
+      { label: 'Regulations' },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Septic Regulations in {data.name}, MA</h1>
+
+    <!-- Regulatory body -->
+    <div class="bg-white border border-gray-200 rounded-lg p-5 mb-6 text-sm">
+      <h2 class="font-bold text-gray-800 mb-3">Regulatory Authority</h2>
+      <p class="text-gray-600 mb-2">{providerLabel[data.healthServiceProvider]}</p>
+      <div class="grid sm:grid-cols-2 gap-2 text-gray-600">
+        {data.bohPhone && <div><span class="text-gray-500">Phone:</span> <a href={`tel:${data.bohPhone.replace(/\D/g,'')}`} class="text-forest-700 hover:underline">{data.bohPhone}</a></div>}
+        {data.bohEmail && <div><span class="text-gray-500">Email:</span> <a href={`mailto:${data.bohEmail}`} class="text-forest-700 hover:underline">{data.bohEmail}</a></div>}
+        {data.bohWebsite && <div class="col-span-full"><a href={data.bohWebsite} target="_blank" rel="noopener noreferrer" class="text-forest-700 hover:underline">Board of Health website →</a></div>}
+        {data.bohAddress && <div class="text-xs text-gray-500">{data.bohAddress}</div>}
+        {data.bohMeetingSchedule && <div class="text-xs text-gray-500">Meetings: {data.bohMeetingSchedule}</div>}
+      </div>
+    </div>
+
+    <!-- Local vs Title 5 callout -->
+    {data.hasLocalSepticRegs
+      ? (
+        <div class="bg-amber-50 border-l-4 border-amber-400 p-4 mb-6 rounded-r-lg">
+          <p class="font-bold text-amber-800 mb-1">{data.name} has local regulations beyond state Title 5.</p>
+          <p class="text-sm text-amber-700">The requirements below go beyond the Massachusetts state minimum. Verify with the {providerLabel[data.healthServiceProvider]} before any septic work.</p>
+          {data.localRegsSource && <p class="text-xs text-amber-600 mt-2">Source: {data.localRegsSource}</p>}
+        </div>
+      )
+      : (
+        <div class="bg-gray-50 border-l-4 border-gray-300 p-4 mb-6 rounded-r-lg">
+          <p class="text-sm text-gray-600">
+            {data.localRegsConfirmed
+              ? `As of our last verification, ${data.name} follows Massachusetts Title 5 state regulations without additional local requirements. Confirm with the Board of Health before any work.`
+              : `We have not confirmed whether ${data.name} has local septic regulations beyond state Title 5. Contact the Board of Health directly.`
+            }
+          </p>
+        </div>
+      )
+    }
+
+    <!-- Watershed overlay -->
+    {data.watershedOverlay && (
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-sm text-blue-800">
+        <p class="font-semibold mb-1">Watershed Overlay District</p>
+        <p>{data.watershedDetails ?? 'This town is subject to additional watershed protection regulations that may affect septic system requirements.'}</p>
+      </div>
+    )}
+
+    <!-- Regulation content -->
+    <div class="prose prose-sm prose-headings:text-gray-900 prose-a:text-forest-700 max-w-none mb-8">
+      <Content />
+    </div>
+
+    <!-- Verification notice -->
+    <div class="bg-earth-50 border border-earth-200 rounded-lg p-4 text-xs text-gray-500 mb-6">
+      {data.localRegsSource
+        ? `This information was compiled from ${data.localRegsSource}. `
+        : 'This information was compiled from publicly available sources. '
+      }
+      Regulations can change — confirm with the {data.name} Board of Health before making any decisions.
+      {data.bohPhone && <span> Call: <a href={`tel:${data.bohPhone.replace(/\D/g,'')}`} class="text-forest-700 hover:underline">{data.bohPhone}</a></span>}
+    </div>
+
+    <!-- Back link -->
+    <div class="flex gap-4 text-sm">
+      <a href={`/towns/${data.slug}/`} class="text-forest-700 hover:underline">← Back to {data.name} overview</a>
+      <a href="/towns/" class="text-forest-700 hover:underline">All towns</a>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import ContractorCard from '../../../components/ContractorCard.astro';
+import PumpReminderForm from '../../../components/PumpReminderForm.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const towns = await getCollection('towns');
+  return towns.map(t => ({ params: { slug: t.data.slug }, props: { town: t } }));
+}
+
+const { town } = Astro.props;
+const { data } = town;
+
+const allContractors = await getCollection('contractors');
+const contractors = allContractors
+  .filter(c => c.data.townsServed.includes(data.slug))
+  .sort((a, b) => {
+    const tierOrder = { featured: 0, claimed: 1, free: 2 };
+    return tierOrder[a.data.tier] - tierOrder[b.data.tier];
+  });
+
+const allArticles = await getCollection('articles').catch(() => []);
+const relatedArticles = allArticles.filter(a => a.data.relatedTowns.includes(data.slug));
+
+const providerLabel: Record<string, string> = {
+  independent: 'Independent Board of Health',
+  cphs: 'FRCOG Cooperative Public Health Service (CPHS)',
+  foothills: 'Foothills Health District',
+  unknown: 'Unknown',
+};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: `Septic Systems in ${data.name}, MA`,
+  about: { '@type': 'AdministrativeArea', name: `${data.name}, MA` },
+};
+---
+
+<BaseLayout
+  title={`Septic Systems in ${data.name}, MA`}
+  description={`Find septic contractors, Board of Health contacts, and local regulations for ${data.name}, MA. ${data.hasLocalSepticRegs ? 'Local regulations apply.' : ''}`}
+  schema={schema}
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Towns', href: '/towns/' },
+      { label: data.name },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Septic Systems in {data.name}, MA</h1>
+
+    <!-- Quick facts -->
+    <div class="bg-white border border-gray-200 rounded-lg p-5 mb-6 grid sm:grid-cols-2 gap-4 text-sm">
+      <div class="space-y-2">
+        {data.population && <div><span class="text-gray-500">Population:</span> <span class="font-medium">{data.population.toLocaleString()}</span></div>}
+        <div>
+          <span class="text-gray-500">Municipal sewer:</span>{' '}
+          <span class="font-medium">
+            {data.hasMunicipalSewer && !data.partialSewer ? 'Yes (full)' : data.partialSewer ? 'Partial' : 'No — septic required'}
+          </span>
+        </div>
+        <div>
+          <span class="text-gray-500">Health services:</span>{' '}
+          <span class="font-medium">{providerLabel[data.healthServiceProvider]}</span>
+        </div>
+        {data.watershedOverlay && (
+          <div>
+            <span class="text-amber-700 font-semibold">Watershed overlay applies</span>
+            {data.watershedDetails && <p class="text-xs text-gray-500 mt-0.5">{data.watershedDetails}</p>}
+          </div>
+        )}
+      </div>
+      <div class="space-y-2">
+        {data.bohPhone && <div><span class="text-gray-500">BOH Phone:</span> <a href={`tel:${data.bohPhone.replace(/\D/g,'')}`} class="font-medium text-forest-700 hover:underline">{data.bohPhone}</a></div>}
+        {data.bohEmail && <div><span class="text-gray-500">BOH Email:</span> <a href={`mailto:${data.bohEmail}`} class="font-medium text-forest-700 hover:underline">{data.bohEmail}</a></div>}
+        {data.bohWebsite && <div><a href={data.bohWebsite} target="_blank" rel="noopener noreferrer" class="text-forest-700 hover:underline font-medium">Board of Health Website →</a></div>}
+        {data.bohAddress && <div class="text-gray-500 text-xs">{data.bohAddress}</div>}
+        {data.bohMeetingSchedule && <div class="text-xs text-gray-500">Meetings: {data.bohMeetingSchedule}</div>}
+      </div>
+    </div>
+
+    <!-- Local regulations summary -->
+    <div class={`rounded-lg p-5 mb-6 border ${data.hasLocalSepticRegs ? 'bg-amber-50 border-amber-200' : 'bg-gray-50 border-gray-200'}`}>
+      <div class="flex items-start justify-between gap-3 mb-2">
+        <h2 class="text-lg font-bold text-gray-800">Local Septic Regulations</h2>
+        <a href={`/towns/${data.slug}/regulations/`} class="text-sm text-forest-700 hover:underline shrink-0">Full details →</a>
+      </div>
+      {data.hasLocalSepticRegs
+        ? <p class="text-sm text-amber-800 mb-3"><strong>{data.name} has local regulations that go beyond state Title 5 requirements.</strong> Confirm requirements with the Board of Health before any work.</p>
+        : <p class="text-sm text-gray-600 mb-2">{data.name} follows Massachusetts Title 5 state regulations. {data.localRegsConfirmed ? 'No additional local requirements confirmed.' : 'Verify with the Board of Health before any work.'}</p>
+      }
+      <a href={`/towns/${data.slug}/regulations/`} class="inline-block bg-forest-700 hover:bg-forest-800 text-white text-sm px-4 py-2 rounded font-medium transition-colors">
+        Read the Regulations
+      </a>
+    </div>
+
+    <!-- Contractors serving this town -->
+    <div class="mb-8">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">
+        Septic Contractors Serving {data.name}
+        {contractors.length > 0 && <span class="text-base font-normal text-gray-500 ml-2">({contractors.length})</span>}
+      </h2>
+      {contractors.length > 0
+        ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {contractors.map(c => (
+              <ContractorCard
+                name={c.data.name}
+                slug={c.data.slug}
+                tier={c.data.tier}
+                location={c.data.location}
+                phone={c.data.phone}
+                services={c.data.services}
+                townsServed={c.data.townsServed}
+                emergencyService={c.data.emergencyService}
+                multiSourceVerified={c.data.multiSourceVerified}
+                status={c.data.status}
+                flagged={c.data.flagged}
+                yearsInBusiness={c.data.yearsInBusiness}
+                description={c.data.description}
+              />
+            ))}
+          </div>
+        )
+        : (
+          <p class="text-gray-500 text-sm">No contractors specifically listed for {data.name} yet. <a href="/directory/" class="text-forest-700 hover:underline">Browse all directory listings</a> — many contractors serve the full region.</p>
+        )
+      }
+    </div>
+
+    <!-- Related articles -->
+    {relatedArticles.length > 0 && (
+      <div class="mb-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Related Articles</h2>
+        <ul class="space-y-2">
+          {relatedArticles.map(a => (
+            <li>
+              <a href={`/articles/${a.data.slug}/`} class="text-forest-700 hover:underline font-medium">{a.data.title}</a>
+              <p class="text-xs text-gray-500">{a.data.metaDescription}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- Pump reminder -->
+    <PumpReminderForm preselectedTown={data.slug} />
+  </div>
+</BaseLayout>

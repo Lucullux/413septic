@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+---
+
+<BaseLayout
+  title="Septic System Cost Guides — Western MA"
+  description="How much do septic services cost in western Massachusetts? Real cost ranges for pumping, inspections, repairs, and full system replacements."
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Cost Guides' },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Septic Cost Guides — Western MA</h1>
+    <p class="text-gray-500 mb-8">Real cost ranges for septic services in Franklin County and western Massachusetts. Town-specific guides below.</p>
+
+    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-8 text-sm text-amber-800">
+      <p class="font-semibold mb-1">Important note on septic costs</p>
+      <p>Price spreads of $8,000–$10,000 between contractors for the same job are common in western MA. Always get multiple bids. The MA Septic Tax Credit can offset up to $6,000 in qualifying costs — see the <a href="/articles/" class="underline">articles section</a> for details.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-8">
+      <div class="bg-white border border-gray-200 rounded-lg p-4">
+        <h2 class="font-bold text-gray-800 mb-3">By Service</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/services/septic-pumping/" class="text-forest-700 hover:underline">Septic Pumping — $300–$600</a></li>
+          <li><a href="/services/title-5-inspection/" class="text-forest-700 hover:underline">Title 5 Inspection — $400–$800</a></li>
+          <li><a href="/services/perc-test/" class="text-forest-700 hover:underline">Perc Test — $500–$1,500</a></li>
+          <li><a href="/services/system-replacement/" class="text-forest-700 hover:underline">System Replacement — $15,000–$40,000</a></li>
+          <li><a href="/services/emergency-service/" class="text-forest-700 hover:underline">Emergency Service — varies</a></li>
+        </ul>
+      </div>
+      <div class="bg-white border border-gray-200 rounded-lg p-4">
+        <h2 class="font-bold text-gray-800 mb-3">Town-Specific Guides</h2>
+        <p class="text-sm text-gray-500 mb-2">Cost guides for specific towns coming soon — each will reflect local regulatory requirements that affect pricing.</p>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li>Greenfield — coming soon</li>
+          <li>Montague — coming soon</li>
+          <li>Deerfield — coming soon</li>
+          <li>Orange — coming soon</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

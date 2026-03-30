@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import VerificationBadge from '../../components/VerificationBadge.astro';
+import ClaimListingCTA from '../../components/ClaimListingCTA.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const contractors = await getCollection('contractors');
+  return contractors.map(c => ({ params: { slug: c.data.slug }, props: { contractor: c } }));
+}
+
+const { contractor } = Astro.props;
+const { data } = contractor;
+const { Content } = await render(contractor);
+
+const allServices = await getCollection('services');
+const allTowns = await getCollection('towns');
+
+const contractorServices = allServices.filter(s => data.services.includes(s.data.slug));
+const contractorTowns = allTowns.filter(t => data.townsServed.includes(t.data.slug));
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: data.name,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: data.location,
+    addressRegion: 'MA',
+    addressCountry: 'US',
+  },
+  ...(data.phone ? { telephone: data.phone } : {}),
+  ...(data.website ? { url: data.website } : {}),
+  url: `https://413septic.com/directory/${data.slug}/`,
+  areaServed: contractorTowns.map(t => ({
+    '@type': 'AdministrativeArea',
+    name: `${t.data.name}, MA`,
+  })),
+  makesOffer: contractorServices.map(s => ({
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: s.data.name },
+  })),
+};
+---
+
+<BaseLayout
+  title={data.name}
+  description={data.description ?? `${data.name} — septic contractor based in ${data.location}, MA, serving Franklin County and surrounding areas.`}
+  ogType="business.business"
+  schema={schema}
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Directory', href: '/directory/' },
+      { label: data.name },
+    ]} />
+
+    <!-- Header -->
+    <div class="flex items-start justify-between gap-4 mb-6">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          {data.tier === 'featured' && <span class="bg-accent-500 text-white text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wide">Featured</span>}
+          {data.tier === 'claimed' && <span class="bg-forest-600 text-white text-xs font-semibold px-2 py-0.5 rounded">Verified</span>}
+        </div>
+        <h1 class="text-3xl font-extrabold text-gray-900">{data.name}</h1>
+        <p class="text-gray-500 mt-1">{data.location}, MA{data.yearsInBusiness ? ` · Est. ${data.established ?? `${new Date().getFullYear() - data.yearsInBusiness}`}` : ''}</p>
+      </div>
+    </div>
+
+    <!-- Key Info Bar -->
+    <div class="bg-white border border-gray-200 rounded-lg p-4 mb-6 flex flex-wrap gap-4 text-sm">
+      {data.phone && (
+        <div>
+          <span class="text-gray-500 block text-xs mb-0.5">Phone</span>
+          <a href={`tel:${data.phone.replace(/\D/g, '')}`} class="font-bold text-forest-700 hover:text-forest-900 text-lg">{data.phone}</a>
+        </div>
+      )}
+      {data.website && (
+        <div>
+          <span class="text-gray-500 block text-xs mb-0.5">Website</span>
+          <a href={data.website} target="_blank" rel="noopener noreferrer" class="font-medium text-forest-700 hover:text-forest-900">{data.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}</a>
+        </div>
+      )}
+      {data.emergencyService && (
+        <div class="ml-auto">
+          <span class="bg-red-50 text-red-700 border border-red-200 px-3 py-2 rounded font-semibold text-sm">⚡ 24/7 Emergency Service</span>
+        </div>
+      )}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 space-y-6">
+        <!-- Description -->
+        {data.description && (
+          <div>
+            <h2 class="text-lg font-bold text-gray-800 mb-2">About {data.name}</h2>
+            <p class="text-gray-600">{data.longDescription ?? data.description}</p>
+          </div>
+        )}
+
+        <!-- Long content -->
+        {contractor.body && (
+          <div class="prose prose-sm max-w-none text-gray-700">
+            <Content />
+          </div>
+        )}
+
+        <!-- Services -->
+        {contractorServices.length > 0 && (
+          <div>
+            <h2 class="text-lg font-bold text-gray-800 mb-3">Services Offered</h2>
+            <ul class="grid grid-cols-2 gap-2">
+              {contractorServices.map(s => (
+                <li>
+                  <a href={`/services/${s.data.slug}/`} class="text-sm text-forest-700 hover:text-forest-900 hover:underline">
+                    {s.data.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <!-- Service Area -->
+        {contractorTowns.length > 0 && (
+          <div>
+            <h2 class="text-lg font-bold text-gray-800 mb-3">Service Area</h2>
+            <div class="flex flex-wrap gap-2">
+              {contractorTowns.map(t => (
+                <a href={`/towns/${t.data.slug}/`} class="bg-earth-100 hover:bg-earth-200 text-earth-800 text-sm px-3 py-1 rounded-full border border-earth-200 transition-colors">
+                  {t.data.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Photos (claimed/featured only) -->
+        {data.photos && data.photos.length > 0 && (
+          <div>
+            <h2 class="text-lg font-bold text-gray-800 mb-3">Photos</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {data.photos.map((src) => (
+                <img
+                  src={src}
+                  alt={`${data.name} photo`}
+                  loading="lazy"
+                  class="rounded-lg object-cover w-full aspect-video bg-gray-100"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Licensing -->
+        {(data.soilEvaluator || data.titleVInspector || data.licensedIn.length > 0) && (
+          <div>
+            <h2 class="text-lg font-bold text-gray-800 mb-3">Licensing & Credentials</h2>
+            <ul class="space-y-1 text-sm text-gray-600">
+              {data.titleVInspector && <li class="flex items-center gap-2"><span class="text-forest-600">✓</span> Licensed Title V Inspector</li>}
+              {data.soilEvaluator && <li class="flex items-center gap-2"><span class="text-forest-600">✓</span> Licensed Soil Evaluator</li>}
+              {data.portableToilets && <li class="flex items-center gap-2"><span class="text-forest-600">✓</span> Portable Toilet Rental</li>}
+              {data.licensedIn.length > 0 && (
+                <li>Licensed hauler in: {data.licensedIn.join(', ')}</li>
+              )}
+            </ul>
+          </div>
+        )}
+
+        <!-- Featured: Lead Capture -->
+        {data.tier === 'featured' && (
+          <div class="bg-earth-50 border border-earth-200 rounded-lg p-5">
+            <h2 class="text-lg font-bold text-gray-800 mb-3">Request a Quote</h2>
+            <form action="/contact/" method="post" class="space-y-3">
+              <input type="hidden" name="contractor" value={data.name} />
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-medium text-gray-700 mb-1">Name</label>
+                  <input type="text" name="name" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-gray-700 mb-1">Phone</label>
+                  <input type="tel" name="phone" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" name="email" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Service needed</label>
+                <select name="service" class="w-full border border-gray-300 rounded px-3 py-2 text-sm bg-white">
+                  <option value="">Select a service...</option>
+                  {contractorServices.map(s => <option value={s.data.slug}>{s.data.name}</option>)}
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Brief description</label>
+                <textarea name="message" rows={3} class="w-full border border-gray-300 rounded px-3 py-2 text-sm resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-2.5 rounded transition-colors text-sm">
+                Send Quote Request
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
+
+      <!-- Sidebar -->
+      <div class="space-y-4">
+        <VerificationBadge
+          multiSourceVerified={data.multiSourceVerified}
+          lastVerified={data.lastVerified}
+          status={data.status}
+        />
+        {data.flagNotes && (
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-800">
+            <p class="font-semibold mb-1">Research note:</p>
+            <p>{data.flagNotes}</p>
+          </div>
+        )}
+        <ClaimListingCTA contractorName={data.name} />
+
+        <!-- Related towns -->
+        {contractorTowns.length > 0 && (
+          <div class="bg-white border border-gray-200 rounded-lg p-4">
+            <h3 class="text-sm font-bold text-gray-700 mb-2">Town Regulation Guides</h3>
+            <ul class="space-y-1">
+              {contractorTowns.slice(0, 6).map(t => (
+                <li><a href={`/towns/${t.data.slug}/regulations/`} class="text-xs text-forest-700 hover:underline">{t.data.name} septic regulations →</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

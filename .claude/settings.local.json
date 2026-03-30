@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx astro:*)",
+      "Bash(done)",
+      "Bash(grep -l \"partialSewer: true\\\\|hasMunicipalSewer: true\" /Users/zacbanas/Documents/septicproject/src/content/towns/*.md)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

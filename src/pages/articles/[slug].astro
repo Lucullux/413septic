@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PumpReminderForm from '../../components/PumpReminderForm.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles').catch(() => []);
+  return articles.map(a => ({ params: { slug: a.data.slug }, props: { article: a } }));
+}
+
+const { article } = Astro.props;
+const { data } = article;
+const { Content, headings } = await render(article);
+
+const allTowns = await getCollection('towns');
+const allServices = await getCollection('services');
+const allArticles = await getCollection('articles').catch(() => []);
+
+const relatedTowns = allTowns.filter(t => data.relatedTowns.includes(t.data.slug));
+const relatedServices = allServices.filter(s => data.relatedServices.includes(s.data.slug));
+const relatedArticles = allArticles.filter(a => data.relatedArticles.includes(a.data.slug));
+
+const topLevelHeadings = headings.filter(h => h.depth === 2);
+
+const schemaItems: object[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: data.title,
+    description: data.metaDescription,
+    datePublished: data.publishDate,
+    ...(data.updatedDate ? { dateModified: data.updatedDate } : {}),
+    publisher: { '@type': 'Organization', name: '413Septic.com' },
+  },
+];
+
+if (data.hasFAQ && data.faqItems && data.faqItems.length > 0) {
+  schemaItems.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: data.faqItems.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  });
+}
+---
+
+<BaseLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  ogType="article"
+  schema={schemaItems}
+>
+  <div class="max-w-3xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Articles', href: '/articles/' },
+      { label: data.title },
+    ]} />
+
+    <div class="mb-2 flex items-center gap-3">
+      <span class="text-xs bg-forest-100 text-forest-700 px-2 py-0.5 rounded-full font-medium">{data.category.replace('-', ' ')}</span>
+      <span class="text-xs text-gray-400">{data.publishDate}</span>
+      {data.updatedDate && <span class="text-xs text-gray-400">Updated {data.updatedDate}</span>}
+    </div>
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">{data.title}</h1>
+
+    <!-- Table of contents -->
+    {topLevelHeadings.length >= 3 && (
+      <div class="bg-earth-50 border border-earth-200 rounded-lg p-4 mb-6 text-sm">
+        <p class="font-semibold text-gray-700 mb-2">In this article:</p>
+        <ol class="list-decimal list-inside space-y-1 text-forest-700">
+          {topLevelHeadings.map(h => (
+            <li><a href={`#${h.slug}`} class="hover:underline">{h.text}</a></li>
+          ))}
+        </ol>
+      </div>
+    )}
+
+    <!-- Article body -->
+    <div class="prose prose-sm prose-headings:text-gray-900 prose-a:text-forest-700 max-w-none mb-8">
+      <Content />
+    </div>
+
+    <!-- FAQ section -->
+    {data.hasFAQ && data.faqItems && data.faqItems.length > 0 && (
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-5 mb-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {data.faqItems.map(f => (
+            <div>
+              <p class="font-semibold text-gray-800 mb-1">{f.question}</p>
+              <p class="text-sm text-gray-600">{f.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Related content -->
+    <div class="grid sm:grid-cols-3 gap-4 mb-8 text-sm">
+      {relatedArticles.length > 0 && (
+        <div>
+          <h3 class="font-bold text-gray-700 mb-2">Related Articles</h3>
+          <ul class="space-y-1">
+            {relatedArticles.map(a => <li><a href={`/articles/${a.data.slug}/`} class="text-forest-700 hover:underline">{a.data.title}</a></li>)}
+          </ul>
+        </div>
+      )}
+      {relatedTowns.length > 0 && (
+        <div>
+          <h3 class="font-bold text-gray-700 mb-2">Towns</h3>
+          <ul class="space-y-1">
+            {relatedTowns.map(t => <li><a href={`/towns/${t.data.slug}/`} class="text-forest-700 hover:underline">{t.data.name}</a></li>)}
+          </ul>
+        </div>
+      )}
+      {relatedServices.length > 0 && (
+        <div>
+          <h3 class="font-bold text-gray-700 mb-2">Services</h3>
+          <ul class="space-y-1">
+            {relatedServices.map(s => <li><a href={`/services/${s.data.slug}/`} class="text-forest-700 hover:underline">{s.data.name}</a></li>)}
+          </ul>
+        </div>
+      )}
+    </div>
+
+    {data.showPumpReminderCTA && <PumpReminderForm compact={true} />}
+
+    {data.showDirectoryCTA && (
+      <div class="bg-forest-50 border border-forest-200 rounded-lg p-4 text-sm mt-6">
+        <p class="font-semibold text-forest-800 mb-2">Find a septic contractor near you</p>
+        <a href="/directory/" class="inline-block bg-forest-700 hover:bg-forest-800 text-white px-4 py-2 rounded text-sm font-medium transition-colors">Browse the Directory →</a>
+      </div>
+    )}
+  </div>
+</BaseLayout>

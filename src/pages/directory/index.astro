@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PumpReminderForm from '../../components/PumpReminderForm.astro';
+import DirectoryFilter from '../../components/DirectoryFilter.tsx';
+import { getCollection } from 'astro:content';
+
+const allContractors = await getCollection('contractors');
+const allServices = await getCollection('services');
+const allTowns = await getCollection('towns');
+
+// Serialize for client component
+const contractors = [...allContractors]
+  .sort((a, b) => {
+    const tierOrder = { featured: 0, claimed: 1, free: 2 };
+    const tierDiff = tierOrder[a.data.tier] - tierOrder[b.data.tier];
+    if (tierDiff !== 0) return tierDiff;
+    return a.data.name.localeCompare(b.data.name);
+  })
+  .map(c => ({
+    name: c.data.name,
+    slug: c.data.slug,
+    tier: c.data.tier,
+    location: c.data.location,
+    phone: c.data.phone ?? null,
+    services: c.data.services,
+    townsServed: c.data.townsServed,
+    emergencyService: c.data.emergencyService,
+    multiSourceVerified: c.data.multiSourceVerified,
+    status: c.data.status,
+    flagged: c.data.flagged,
+    yearsInBusiness: c.data.yearsInBusiness ?? null,
+    description: c.data.description ?? null,
+  }));
+
+const towns = allTowns
+  .map(t => t.data.slug)
+  .sort();
+
+const serviceOptions = allServices
+  .map(s => ({ slug: s.data.slug, name: s.data.name }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<BaseLayout
+  title="Septic Companies Serving Franklin County, MA"
+  description="Find septic contractors serving Franklin County and western Massachusetts. Filter by town, service, or emergency availability."
+>
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Directory' },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Septic Companies Serving Franklin County, MA</h1>
+    <p class="text-gray-500 mb-6">{allContractors.length} listings — contractors based in or serving western Massachusetts</p>
+
+    <DirectoryFilter
+      client:load
+      contractors={contractors}
+      towns={towns}
+      serviceOptions={serviceOptions}
+    />
+
+    <div class="mt-12">
+      <PumpReminderForm compact={true} />
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  shortDescription: string;
+  costRangeLow?: number | null;
+  costRangeHigh?: number | null;
+  frequency?: string;
+  category: string;
+}
+
+const { name, slug, shortDescription, costRangeLow, costRangeHigh, frequency, category } = Astro.props;
+
+const categoryColors: Record<string, string> = {
+  maintenance: 'bg-forest-100 text-forest-700',
+  assessment: 'bg-blue-100 text-blue-700',
+  repair: 'bg-amber-100 text-amber-800',
+  replacement: 'bg-orange-100 text-orange-700',
+  emergency: 'bg-red-100 text-red-700',
+  'new-construction': 'bg-purple-100 text-purple-700',
+  'alternative-systems': 'bg-teal-100 text-teal-700',
+  related: 'bg-gray-100 text-gray-600',
+};
+---
+
+<a href={`/services/${slug}/`} class="block bg-white border border-gray-200 rounded-lg p-4 hover:border-forest-400 hover:shadow-sm transition-all group">
+  <div class="flex items-start justify-between gap-2 mb-2">
+    <h3 class="font-bold text-forest-700 group-hover:text-forest-900 leading-snug">{name}</h3>
+    <span class={`text-xs font-medium px-2 py-0.5 rounded-full shrink-0 ${categoryColors[category] ?? 'bg-gray-100 text-gray-600'}`}>
+      {category.replace('-', ' ')}
+    </span>
+  </div>
+  <p class="text-sm text-gray-600 mb-3">{shortDescription}</p>
+  <div class="flex items-center justify-between text-xs text-gray-500">
+    {(costRangeLow || costRangeHigh) && (
+      <span class="font-semibold text-gray-700">
+        {costRangeLow && costRangeHigh
+          ? `$${costRangeLow.toLocaleString()}–$${costRangeHigh.toLocaleString()}`
+          : costRangeLow
+          ? `From $${costRangeLow.toLocaleString()}`
+          : `Up to $${costRangeHigh?.toLocaleString()}`}
+      </span>
+    )}
+    {frequency && <span>{frequency}</span>}
+  </div>
+</a>

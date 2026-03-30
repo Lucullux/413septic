@@ -1,0 +1,107 @@
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const contractors = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/contractors' }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    tier: z.enum(['free', 'claimed', 'featured']).default('free'),
+    location: z.string(),
+    county: z.enum(['franklin', 'hampshire', 'hampden']),
+    inCounty: z.boolean().default(false),
+    yearsInBusiness: z.number().nullable().optional(),
+    established: z.number().nullable().optional(),
+    owner: z.string().nullable().optional(),
+    phone: z.string().nullable().optional(),
+    website: z.string().nullable().optional(),
+    email: z.string().nullable().optional(),
+    services: z.array(z.string()).default([]),
+    townsServed: z.array(z.string()).default([]),
+    licensedIn: z.array(z.string()).default([]),
+    description: z.string().nullable().optional(),
+    longDescription: z.string().nullable().optional(),
+    photos: z.array(z.string()).nullable().optional(),
+    emergencyService: z.boolean().default(false),
+    portableToilets: z.boolean().default(false),
+    soilEvaluator: z.boolean().default(false),
+    titleVInspector: z.boolean().default(false),
+    specialties: z.array(z.string()).nullable().optional(),
+    sources: z.array(z.string()).default([]),
+    multiSourceVerified: z.boolean().default(false),
+    flagged: z.boolean().default(false),
+    flagNotes: z.string().nullable().optional(),
+    status: z.enum(['active', 'unverified', 'possibly-closed', 'needs-phone-verification']).default('unverified'),
+    lastVerified: z.string().nullable().optional(),
+  }),
+});
+
+const towns = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/towns' }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    county: z.enum(['franklin', 'hampshire', 'hampden']),
+    population: z.number().nullable().optional(),
+    hasMunicipalSewer: z.boolean().default(false),
+    partialSewer: z.boolean().default(false),
+    bohWebsite: z.string().nullable().optional(),
+    bohPhone: z.string().nullable().optional(),
+    bohEmail: z.string().nullable().optional(),
+    bohAddress: z.string().nullable().optional(),
+    bohMeetingSchedule: z.string().nullable().optional(),
+    healthServiceProvider: z.enum(['independent', 'cphs', 'foothills', 'unknown']).default('unknown'),
+    hasLocalSepticRegs: z.boolean().default(false),
+    localRegsConfirmed: z.boolean().default(false),
+    localRegsSource: z.string().nullable().optional(),
+    watershedOverlay: z.boolean().default(false),
+    watershedDetails: z.string().nullable().optional(),
+    onlinePresenceQuality: z.enum(['good', 'limited', 'none']).default('limited'),
+    phoneVerificationNeeded: z.boolean().default(false),
+  }),
+});
+
+const services = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/services' }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    category: z.enum(['maintenance', 'assessment', 'repair', 'replacement', 'new-construction', 'emergency', 'alternative-systems', 'related']),
+    shortDescription: z.string(),
+    frequency: z.string().nullable().optional(),
+    costRangeLow: z.number().nullable().optional(),
+    costRangeHigh: z.number().nullable().optional(),
+    costNotes: z.string().nullable().optional(),
+    requiresLicense: z.boolean().default(false),
+    requiresPermit: z.boolean().default(false),
+    titleVReference: z.string().nullable().optional(),
+    titleVDetails: z.string().nullable().optional(),
+    townVariation: z.boolean().default(false),
+    emergencyRelevant: z.boolean().default(false),
+    seasonalRelevance: z.string().nullable().optional(),
+  }),
+});
+
+const articles = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    metaTitle: z.string(),
+    metaDescription: z.string(),
+    category: z.enum(['cost-guide', 'troubleshooting', 'new-homebuyer', 'regulatory', 'seasonal', 'town-specific', 'service-explainer', 'tool']),
+    targetKeyword: z.string(),
+    searcherIntent: z.enum(['informational', 'navigational', 'transactional']),
+    relatedTowns: z.array(z.string()).default([]),
+    relatedServices: z.array(z.string()).default([]),
+    relatedArticles: z.array(z.string()).default([]),
+    publishDate: z.string(),
+    updatedDate: z.string().nullable().optional(),
+    hasFAQ: z.boolean().default(false),
+    faqItems: z.array(z.object({ question: z.string(), answer: z.string() })).nullable().optional(),
+    showPumpReminderCTA: z.boolean().default(false),
+    showDirectoryCTA: z.boolean().default(false),
+  }),
+});
+
+export const collections = { contractors, towns, services, articles };

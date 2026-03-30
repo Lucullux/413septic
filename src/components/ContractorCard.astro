@@ -1,0 +1,85 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  tier: 'free' | 'claimed' | 'featured';
+  location: string;
+  phone?: string | null;
+  services: string[];
+  townsServed: string[];
+  emergencyService: boolean;
+  multiSourceVerified: boolean;
+  status: string;
+  flagged: boolean;
+  yearsInBusiness?: number | null;
+  description?: string | null;
+}
+
+const {
+  name, slug, tier, location, phone, services, townsServed,
+  emergencyService, multiSourceVerified, status, flagged, yearsInBusiness, description
+} = Astro.props;
+
+const serviceLabels: Record<string, string> = {
+  'septic-pumping': 'Pumping',
+  'title-5-inspection': 'Title 5',
+  'perc-test': 'Perc Test',
+  'system-replacement': 'Replacement',
+  'emergency-service': 'Emergency',
+  'cesspool-conversion': 'Cesspool Conv.',
+  'new-system-installation': 'New Install',
+  'septic-inspection': 'Inspection',
+  'leach-field-repair': 'Leach Field',
+  'pump-replacement': 'Pump Replace',
+  'mound-system': 'Mound System',
+  'ia-system-maintenance': 'I/A Maint.',
+};
+---
+
+<div class={`bg-white rounded-lg border shadow-sm p-4 flex flex-col gap-3 ${tier === 'featured' ? 'border-accent-400 ring-1 ring-accent-400' : 'border-gray-200'}`}>
+  <div class="flex items-start justify-between gap-2">
+    <div>
+      <a href={`/directory/${slug}/`} class="text-lg font-bold text-forest-700 hover:text-forest-900 hover:underline leading-tight block">{name}</a>
+      <p class="text-sm text-gray-500 mt-0.5">{location}, MA</p>
+    </div>
+    <div class="flex flex-col items-end gap-1 shrink-0">
+      {tier === 'featured' && <span class="bg-accent-500 text-white text-xs font-bold px-2 py-0.5 rounded uppercase tracking-wide">Featured</span>}
+      {tier === 'claimed' && <span class="bg-forest-600 text-white text-xs font-semibold px-2 py-0.5 rounded">Verified</span>}
+      {multiSourceVerified && tier === 'free' && <span class="bg-forest-100 text-forest-700 text-xs font-medium px-2 py-0.5 rounded border border-forest-200">✓ Multi-source</span>}
+    </div>
+  </div>
+
+  {description && <p class="text-sm text-gray-600 line-clamp-2">{description}</p>}
+
+  {services.length > 0 && (
+    <div class="flex flex-wrap gap-1.5">
+      {services.slice(0, 6).map((s) => (
+        <span class="bg-earth-100 text-earth-800 text-xs px-2 py-0.5 rounded-full border border-earth-200">
+          {serviceLabels[s] ?? s}
+        </span>
+      ))}
+      {services.length > 6 && <span class="text-xs text-gray-500">+{services.length - 6} more</span>}
+    </div>
+  )}
+
+  <div class="flex items-center justify-between mt-auto pt-2 border-t border-gray-100">
+    <div class="flex items-center gap-3 text-xs text-gray-500">
+      {emergencyService && <span class="text-red-600 font-medium">⚡ 24/7 Emergency</span>}
+      {yearsInBusiness && <span>{yearsInBusiness}+ yrs</span>}
+      <span>{townsServed.length} towns served</span>
+    </div>
+    <div class="flex items-center gap-2">
+      {phone && (
+        <a href={`tel:${phone.replace(/\D/g, '')}`} class="text-sm font-semibold text-forest-700 hover:text-forest-900">{phone}</a>
+      )}
+      <a href={`/directory/${slug}/`} class="text-xs bg-forest-700 text-white hover:bg-forest-800 px-3 py-1.5 rounded font-medium">View Profile</a>
+    </div>
+  </div>
+
+  {flagged && (
+    <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded px-2 py-1">⚠ Status unconfirmed — verify before calling</p>
+  )}
+  {status === 'possibly-closed' && (
+    <p class="text-xs text-red-700 bg-red-50 border border-red-200 rounded px-2 py-1">⚠ May be closed — verify before calling</p>
+  )}
+</div>

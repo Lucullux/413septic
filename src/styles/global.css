@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-earth-50: #faf7f2;
+  --color-earth-100: #f2ebe0;
+  --color-earth-200: #e4d5bf;
+  --color-earth-300: #d0b895;
+  --color-earth-400: #bb9468;
+  --color-earth-500: #a97c4f;
+  --color-earth-600: #8f6440;
+  --color-earth-700: #734f34;
+  --color-earth-800: #5e402d;
+  --color-earth-900: #4e3527;
+
+  --color-forest-50: #f2f7f2;
+  --color-forest-100: #e0eee0;
+  --color-forest-200: #c2ddc3;
+  --color-forest-300: #96c497;
+  --color-forest-400: #65a566;
+  --color-forest-500: #438844;
+  --color-forest-600: #316d33;
+  --color-forest-700: #28572a;
+  --color-forest-800: #234623;
+  --color-forest-900: #1d3a1e;
+
+  --color-accent-400: #f97316;
+  --color-accent-500: #ea6c0a;
+  --color-accent-600: #c45c08;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: #1f2937;
+    background-color: #faf7f2;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  h2 {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+  a {
+    color: #316d33;
+  }
+  a:hover {
+    color: #28572a;
+  }
+}

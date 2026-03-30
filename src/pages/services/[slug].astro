@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ContractorCard from '../../components/ContractorCard.astro';
+import PumpReminderForm from '../../components/PumpReminderForm.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map(s => ({ params: { slug: s.data.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+const { data } = service;
+const { Content } = await render(service);
+
+const allContractors = await getCollection('contractors');
+const contractors = allContractors
+  .filter(c => c.data.services.includes(data.slug))
+  .sort((a, b) => {
+    const tierOrder = { featured: 0, claimed: 1, free: 2 };
+    return tierOrder[a.data.tier] - tierOrder[b.data.tier];
+  });
+
+const allArticles = await getCollection('articles').catch(() => []);
+const relatedArticles = allArticles.filter(a => a.data.relatedServices.includes(data.slug));
+
+const allTowns = await getCollection('towns');
+const townVariationTowns = data.townVariation ? allTowns.filter(t => t.data.hasLocalSepticRegs) : [];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: data.name,
+  description: data.shortDescription,
+  provider: { '@type': 'Organization', name: '413Septic.com' },
+  areaServed: { '@type': 'AdministrativeArea', name: 'Franklin County, MA' },
+};
+
+const showPumpReminder = ['maintenance', 'related'].includes(data.category);
+---
+
+<BaseLayout
+  title={`${data.name} in Western MA`}
+  description={`${data.shortDescription} Cost, requirements, and local contractors for ${data.name} in western Massachusetts.`}
+  schema={schema}
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services', href: '/services/' },
+      { label: data.name },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">{data.name} in Western MA</h1>
+
+    <!-- Quick facts -->
+    <div class="bg-white border border-gray-200 rounded-lg p-5 mb-6 grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+      {(data.costRangeLow || data.costRangeHigh) && (
+        <div>
+          <span class="text-xs text-gray-500 block mb-0.5">Typical Cost</span>
+          <span class="font-bold text-gray-900 text-base">
+            {data.costRangeLow && data.costRangeHigh
+              ? `$${data.costRangeLow.toLocaleString()}–$${data.costRangeHigh.toLocaleString()}`
+              : data.costRangeLow ? `From $${data.costRangeLow.toLocaleString()}` : `Up to $${data.costRangeHigh?.toLocaleString()}`}
+          </span>
+          {data.costNotes && <p class="text-xs text-gray-400 mt-0.5">{data.costNotes}</p>}
+        </div>
+      )}
+      {data.frequency && (
+        <div>
+          <span class="text-xs text-gray-500 block mb-0.5">Frequency</span>
+          <span class="font-semibold text-gray-800">{data.frequency}</span>
+        </div>
+      )}
+      <div>
+        <span class="text-xs text-gray-500 block mb-0.5">License Required</span>
+        <span class={`font-semibold ${data.requiresLicense ? 'text-amber-700' : 'text-gray-600'}`}>
+          {data.requiresLicense ? 'Yes' : 'No'}
+        </span>
+      </div>
+      <div>
+        <span class="text-xs text-gray-500 block mb-0.5">Permit Required</span>
+        <span class={`font-semibold ${data.requiresPermit ? 'text-amber-700' : 'text-gray-600'}`}>
+          {data.requiresPermit ? 'Yes' : 'No'}
+        </span>
+      </div>
+      {data.titleVReference && (
+        <div class="col-span-full">
+          <span class="text-xs text-gray-500">Title 5 Reference: </span>
+          <span class="text-xs font-mono text-gray-700">{data.titleVReference}</span>
+          {data.titleVDetails && <p class="text-xs text-gray-500 mt-0.5">{data.titleVDetails}</p>}
+        </div>
+      )}
+    </div>
+
+    <!-- Town variation callout -->
+    {data.townVariation && townVariationTowns.length > 0 && (
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 text-sm">
+        <p class="font-semibold text-amber-800 mb-1">Requirements vary by town</p>
+        <p class="text-amber-700 mb-2">Some towns in Franklin County have stricter local requirements for this service. Always verify with your Board of Health.</p>
+        <div class="flex flex-wrap gap-2">
+          {townVariationTowns.map(t => (
+            <a href={`/towns/${t.data.slug}/regulations/`} class="text-xs text-forest-700 hover:underline">{t.data.name} →</a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Service content -->
+    <div class="prose prose-sm prose-headings:text-gray-900 prose-a:text-forest-700 max-w-none mb-8">
+      <Content />
+    </div>
+
+    <!-- Seasonal relevance -->
+    {data.seasonalRelevance && (
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-sm text-blue-800">
+        <span class="font-semibold">Seasonal note: </span>{data.seasonalRelevance}
+      </div>
+    )}
+
+    <!-- Contractors offering this service -->
+    <div class="mb-8">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">
+        Contractors Offering {data.name}
+        {contractors.length > 0 && <span class="text-base font-normal text-gray-500 ml-2">({contractors.length})</span>}
+      </h2>
+      {contractors.length > 0
+        ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {contractors.map(c => (
+              <ContractorCard
+                name={c.data.name}
+                slug={c.data.slug}
+                tier={c.data.tier}
+                location={c.data.location}
+                phone={c.data.phone}
+                services={c.data.services}
+                townsServed={c.data.townsServed}
+                emergencyService={c.data.emergencyService}
+                multiSourceVerified={c.data.multiSourceVerified}
+                status={c.data.status}
+                flagged={c.data.flagged}
+                yearsInBusiness={c.data.yearsInBusiness}
+                description={c.data.description}
+              />
+            ))}
+          </div>
+        )
+        : <p class="text-gray-500 text-sm"><a href="/directory/" class="text-forest-700 hover:underline">Browse the full directory</a> to find contractors in your area.</p>
+      }
+    </div>
+
+    <!-- Related articles -->
+    {relatedArticles.length > 0 && (
+      <div class="mb-8">
+        <h2 class="text-xl font-bold text-gray-800 mb-3">Related Articles</h2>
+        <ul class="space-y-2">
+          {relatedArticles.map(a => (
+            <li><a href={`/articles/${a.data.slug}/`} class="text-forest-700 hover:underline font-medium">{a.data.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {showPumpReminder && <PumpReminderForm compact={true} />}
+  </div>
+</BaseLayout>

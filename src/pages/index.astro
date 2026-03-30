@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PumpReminderForm from '../components/PumpReminderForm.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TownCard from '../components/TownCard.astro';
+import { getCollection } from 'astro:content';
+
+const allTowns = await getCollection('towns');
+const allServices = await getCollection('services');
+const allContractors = await getCollection('contractors');
+
+const featuredServices = allServices.filter(s =>
+  ['septic-pumping','title-5-inspection','perc-test','system-replacement','emergency-service','cesspool-conversion'].includes(s.data.slug)
+).sort((a, b) => {
+  const order = ['septic-pumping','title-5-inspection','system-replacement','emergency-service','perc-test','cesspool-conversion'];
+  return order.indexOf(a.data.slug) - order.indexOf(b.data.slug);
+});
+
+const townsWithCount = allTowns.map(town => ({
+  ...town,
+  contractorCount: allContractors.filter(c => c.data.townsServed.includes(town.data.slug)).length,
+})).sort((a, b) => a.data.name.localeCompare(b.data.name));
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: '413Septic.com',
+    url: 'https://413septic.com',
+    description: 'Your local guide to septic systems in western Massachusetts.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: '413Septic.com',
+    url: 'https://413septic.com',
+    areaServed: { '@type': 'AdministrativeArea', name: 'Franklin County, MA' },
+  },
+];
+---
+
+<BaseLayout
+  title="413Septic.com"
+  description="Your local guide to septic systems in western Massachusetts. Find contractors, look up town regulations, and get a free pump reminder."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="bg-forest-700 text-white py-12 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+        413Septic.com — Your Septic System Guide for Western MA
+      </h1>
+      <p class="text-forest-100 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+        Find local contractors, look up your town's regulations, and get a free reminder when it's time to pump.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href="/directory/" class="bg-white text-forest-800 hover:bg-earth-100 font-bold px-6 py-3 rounded-lg text-base transition-colors">
+          Find a Contractor
+        </a>
+        <a href="/towns/" class="bg-forest-600 hover:bg-forest-500 text-white border border-forest-400 font-bold px-6 py-3 rounded-lg text-base transition-colors">
+          Look Up Your Town
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pump Reminder CTA -->
+  <section class="bg-earth-50 border-b border-earth-200 py-10 px-4">
+    <div class="max-w-2xl mx-auto">
+      <PumpReminderForm />
+    </div>
+  </section>
+
+  <!-- Town Quick Nav -->
+  <section class="py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">Septic Rules by Town</h2>
+      <p class="text-gray-500 text-sm mb-6">Franklin County, MA — 26 municipalities</p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+        {townsWithCount.map(town => (
+          <TownCard
+            name={town.data.name}
+            slug={town.data.slug}
+            hasMunicipalSewer={town.data.hasMunicipalSewer}
+            hasLocalSepticRegs={town.data.hasLocalSepticRegs}
+            healthServiceProvider={town.data.healthServiceProvider}
+            contractorCount={town.contractorCount}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Services -->
+  {featuredServices.length > 0 && (
+    <section class="py-12 px-4 bg-white border-t border-gray-100">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Common Septic Services</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {featuredServices.map(s => (
+            <ServiceCard
+              name={s.data.name}
+              slug={s.data.slug}
+              shortDescription={s.data.shortDescription}
+              costRangeLow={s.data.costRangeLow}
+              costRangeHigh={s.data.costRangeHigh}
+              frequency={s.data.frequency}
+              category={s.data.category}
+            />
+          ))}
+        </div>
+        <div class="mt-6 text-center">
+          <a href="/services/" class="text-forest-700 hover:text-forest-900 font-medium text-sm">View all 22 services →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- About Teaser -->
+  <section class="py-12 px-4 bg-earth-50 border-t border-earth-200">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-xl font-bold text-gray-800 mb-3">Why This Site Exists</h2>
+      <p class="text-gray-600 mb-4">
+        I built 413Septic.com after spending hours trying to figure out my town's septic regulations
+        and couldn't find a single, reliable local resource. Every BOH website was different, half were
+        outdated, and there was no way to quickly find a contractor who actually serves rural Franklin County.
+        This is the site I needed.
+      </p>
+      <a href="/about/" class="text-forest-700 hover:text-forest-900 font-medium text-sm">Read more about the site →</a>
+    </div>
+  </section>
+</BaseLayout>

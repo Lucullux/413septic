@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PumpReminderForm from '../../components/PumpReminderForm.astro';
+---
+
+<BaseLayout
+  title="Free Septic Pump Reminder — Western MA Homeowners"
+  description="Sign up for a free septic pump reminder tailored to your household size and last pump date. For western Massachusetts homeowners."
+>
+  <div class="max-w-2xl mx-auto px-4 py-10">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Pump Reminder' },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-4">Free Septic Pump Reminder for Western MA Homeowners</h1>
+
+    <p class="text-gray-600 mb-2">
+      Most septic problems are avoidable. The number one cause of early system failure is waiting too long
+      between pump-outs — solids accumulate, escape into the leach field, and you're looking at a $15,000–$40,000 replacement.
+    </p>
+    <p class="text-gray-600 mb-6">
+      Tell us your household size and when you last pumped. We'll send you a reminder when it's time.
+      No spam. No selling your information. Just one useful email when your system needs attention.
+    </p>
+
+    <PumpReminderForm />
+
+    <!-- How it works -->
+    <div class="mt-10">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">How It Works</h2>
+      <div class="space-y-3 text-sm text-gray-600">
+        <div class="flex gap-3">
+          <span class="bg-forest-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">1</span>
+          <p>You fill out the form above with your email, household size, and when you last pumped.</p>
+        </div>
+        <div class="flex gap-3">
+          <span class="bg-forest-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">2</span>
+          <p>We calculate when your system will next need pumping based on MA DEP guidelines for your household size.</p>
+        </div>
+        <div class="flex gap-3">
+          <span class="bg-forest-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0">3</span>
+          <p>When the time approaches, you get an email reminder with a link to find a contractor near you.</p>
+        </div>
+      </div>
+
+      <!-- Timing table -->
+      <div class="mt-6 bg-earth-50 rounded-lg border border-earth-200 overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="bg-earth-200 text-earth-900">
+              <th class="text-left px-4 py-2 font-semibold">Household Size</th>
+              <th class="text-left px-4 py-2 font-semibold">Recommended Interval</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-earth-200">
+              <td class="px-4 py-2">1–2 people</td>
+              <td class="px-4 py-2">Every 4–5 years</td>
+            </tr>
+            <tr class="border-t border-earth-200 bg-white">
+              <td class="px-4 py-2">3–4 people</td>
+              <td class="px-4 py-2">Every 3 years</td>
+            </tr>
+            <tr class="border-t border-earth-200">
+              <td class="px-4 py-2">5+ people</td>
+              <td class="px-4 py-2">Every 2 years</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="text-xs text-gray-500 px-4 py-2 border-t border-earth-200">Based on MA DEP guidance. Actual needs vary by system size, usage, and condition.</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="mt-10">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Questions</h2>
+      <div class="space-y-5">
+        <div>
+          <p class="font-semibold text-gray-800 mb-1">How do I know when I last pumped?</p>
+          <p class="text-sm text-gray-600">Check your home inspection report, the original Title 5 inspection report, or look for a pump-out receipt. If you just bought the house, the previous owner may have records. If you can't find documentation, it's safest to assume it's been 3–5 years and schedule a pump-out.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-gray-800 mb-1">Is this actually free?</p>
+          <p class="text-sm text-gray-600">Yes. You'll get the reminder email and that's it. We may eventually include a recommended local contractor in the reminder, but we'll always be transparent about that.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-gray-800 mb-1">What if I move or sell the house?</p>
+          <p class="text-sm text-gray-600">Just unsubscribe from the reminder email. There's an unsubscribe link in every message.</p>
+        </div>
+        <div>
+          <p class="font-semibold text-gray-800 mb-1">Can I change my information later?</p>
+          <p class="text-sm text-gray-600">Reply to any email from us and we'll update your record. We're a small local operation — no ticket systems or automated responses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

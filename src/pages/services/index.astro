@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { getCollection } from 'astro:content';
+
+const allServices = await getCollection('services');
+
+const categories = [
+  { key: 'maintenance', label: 'Maintenance' },
+  { key: 'assessment', label: 'Inspections & Assessments' },
+  { key: 'repair', label: 'Repairs' },
+  { key: 'replacement', label: 'Replacement & Installation' },
+  { key: 'new-construction', label: 'New Construction' },
+  { key: 'emergency', label: 'Emergency' },
+  { key: 'alternative-systems', label: 'Alternative Systems' },
+  { key: 'related', label: 'Related Services' },
+];
+
+const byCategory = Object.fromEntries(
+  categories.map(c => [c.key, allServices.filter(s => s.data.category === c.key)])
+);
+---
+
+<BaseLayout
+  title="Septic Services in Western MA"
+  description="Complete guide to septic system services in western Massachusetts — pumping, Title 5 inspections, repairs, replacements, and more."
+>
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Services' },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Septic Services in Western MA</h1>
+    <p class="text-gray-500 mb-8">Plain English explanations of every septic service — what it is, when you need it, and what it costs.</p>
+
+    {categories.map(cat => {
+      const services = byCategory[cat.key];
+      if (!services || services.length === 0) return null;
+      return (
+        <div class="mb-10">
+          <h2 class="text-lg font-bold text-gray-700 mb-3 border-b border-gray-200 pb-2">{cat.label}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            {services.map(s => (
+              <ServiceCard
+                name={s.data.name}
+                slug={s.data.slug}
+                shortDescription={s.data.shortDescription}
+                costRangeLow={s.data.costRangeLow}
+                costRangeHigh={s.data.costRangeHigh}
+                frequency={s.data.frequency}
+                category={s.data.category}
+              />
+            ))}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</BaseLayout>

@@ -1,0 +1,161 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalURL?: string;
+  ogType?: string;
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description = '413Septic.com — Your local guide to septic systems in western Massachusetts. Find contractors, look up town regulations, and get reminders when it\'s time to pump.',
+  canonicalURL,
+  ogType = 'website',
+  schema,
+} = Astro.props;
+
+const fullTitle = title === '413Septic.com'
+  ? title
+  : `${title} | 413Septic.com`;
+
+const canonical = canonicalURL ?? new URL(Astro.url.pathname, Astro.site).href;
+
+const schemaArray = schema
+  ? Array.isArray(schema) ? schema : [schema]
+  : [];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{fullTitle}</title>
+  <link rel="canonical" href={canonical} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={canonical} />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  {schemaArray.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
+  <!-- GA4 placeholder — add your measurement ID here -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+</head>
+<body class="min-h-screen flex flex-col bg-earth-50 text-gray-800">
+  <header class="bg-forest-700 text-white shadow-md">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 text-white no-underline hover:text-forest-200">
+        <span class="text-2xl font-extrabold tracking-tight">413Septic</span>
+        <span class="text-forest-300 text-sm font-medium hidden sm:inline">.com</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="/directory/" class="text-forest-100 hover:text-white">Find a Contractor</a>
+        <a href="/towns/" class="text-forest-100 hover:text-white">Towns</a>
+        <a href="/services/" class="text-forest-100 hover:text-white">Services</a>
+        <a href="/articles/" class="text-forest-100 hover:text-white">Articles</a>
+        <a href="/tools/pump-reminder/" class="bg-accent-500 hover:bg-accent-600 text-white px-3 py-1.5 rounded font-semibold text-xs uppercase tracking-wide">Pump Reminder</a>
+      </nav>
+      <!-- Mobile nav toggle (JS-free visible links) -->
+      <details class="md:hidden relative">
+        <summary class="list-none cursor-pointer p-2 rounded hover:bg-forest-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </summary>
+        <div class="absolute right-0 top-full mt-1 w-52 bg-forest-800 rounded shadow-lg py-2 z-50">
+          <a href="/directory/" class="block px-4 py-2 text-forest-100 hover:bg-forest-700 hover:text-white text-sm">Find a Contractor</a>
+          <a href="/towns/" class="block px-4 py-2 text-forest-100 hover:bg-forest-700 hover:text-white text-sm">Towns</a>
+          <a href="/services/" class="block px-4 py-2 text-forest-100 hover:bg-forest-700 hover:text-white text-sm">Services</a>
+          <a href="/articles/" class="block px-4 py-2 text-forest-100 hover:bg-forest-700 hover:text-white text-sm">Articles</a>
+          <a href="/tools/pump-reminder/" class="block px-4 py-2 text-accent-400 hover:bg-forest-700 font-semibold text-sm">Pump Reminder</a>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <slot />
+  </main>
+
+  <footer class="bg-forest-900 text-forest-200 mt-16">
+    <div class="max-w-6xl mx-auto px-4 py-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <h3 class="text-white font-bold mb-3 text-sm uppercase tracking-wide">Directory</h3>
+          <ul class="space-y-1 text-sm">
+            <li><a href="/directory/" class="text-forest-300 hover:text-white">All Contractors</a></li>
+            <li><a href="/tools/pump-reminder/" class="text-forest-300 hover:text-white">Pump Reminder</a></li>
+            <li><a href="/contact/" class="text-forest-300 hover:text-white">Claim Your Listing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-bold mb-3 text-sm uppercase tracking-wide">Services</h3>
+          <ul class="space-y-1 text-sm">
+            <li><a href="/services/septic-pumping/" class="text-forest-300 hover:text-white">Septic Pumping</a></li>
+            <li><a href="/services/title-5-inspection/" class="text-forest-300 hover:text-white">Title 5 Inspection</a></li>
+            <li><a href="/services/system-replacement/" class="text-forest-300 hover:text-white">System Replacement</a></li>
+            <li><a href="/services/emergency-service/" class="text-forest-300 hover:text-white">Emergency Service</a></li>
+            <li><a href="/services/" class="text-forest-300 hover:text-white">All Services →</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-bold mb-3 text-sm uppercase tracking-wide">Resources</h3>
+          <ul class="space-y-1 text-sm">
+            <li><a href="/articles/" class="text-forest-300 hover:text-white">Articles</a></li>
+            <li><a href="/costs/" class="text-forest-300 hover:text-white">Cost Guides</a></li>
+            <li><a href="/about/" class="text-forest-300 hover:text-white">About</a></li>
+            <li><a href="/contact/" class="text-forest-300 hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white font-bold mb-3 text-sm uppercase tracking-wide">Franklin County Towns</h3>
+          <div class="grid grid-cols-2 gap-x-2 text-xs text-forest-300">
+            <a href="/towns/ashfield/" class="hover:text-white py-0.5">Ashfield</a>
+            <a href="/towns/bernardston/" class="hover:text-white py-0.5">Bernardston</a>
+            <a href="/towns/buckland/" class="hover:text-white py-0.5">Buckland</a>
+            <a href="/towns/charlemont/" class="hover:text-white py-0.5">Charlemont</a>
+            <a href="/towns/colrain/" class="hover:text-white py-0.5">Colrain</a>
+            <a href="/towns/conway/" class="hover:text-white py-0.5">Conway</a>
+            <a href="/towns/deerfield/" class="hover:text-white py-0.5">Deerfield</a>
+            <a href="/towns/erving/" class="hover:text-white py-0.5">Erving</a>
+            <a href="/towns/gill/" class="hover:text-white py-0.5">Gill</a>
+            <a href="/towns/greenfield/" class="hover:text-white py-0.5">Greenfield</a>
+            <a href="/towns/hawley/" class="hover:text-white py-0.5">Hawley</a>
+            <a href="/towns/heath/" class="hover:text-white py-0.5">Heath</a>
+            <a href="/towns/leverett/" class="hover:text-white py-0.5">Leverett</a>
+            <a href="/towns/leyden/" class="hover:text-white py-0.5">Leyden</a>
+            <a href="/towns/monroe/" class="hover:text-white py-0.5">Monroe</a>
+            <a href="/towns/montague/" class="hover:text-white py-0.5">Montague</a>
+            <a href="/towns/new-salem/" class="hover:text-white py-0.5">New Salem</a>
+            <a href="/towns/northfield/" class="hover:text-white py-0.5">Northfield</a>
+            <a href="/towns/orange/" class="hover:text-white py-0.5">Orange</a>
+            <a href="/towns/rowe/" class="hover:text-white py-0.5">Rowe</a>
+            <a href="/towns/shelburne/" class="hover:text-white py-0.5">Shelburne</a>
+            <a href="/towns/shutesbury/" class="hover:text-white py-0.5">Shutesbury</a>
+            <a href="/towns/sunderland/" class="hover:text-white py-0.5">Sunderland</a>
+            <a href="/towns/warwick/" class="hover:text-white py-0.5">Warwick</a>
+            <a href="/towns/wendell/" class="hover:text-white py-0.5">Wendell</a>
+            <a href="/towns/whately/" class="hover:text-white py-0.5">Whately</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-forest-700 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-forest-400">
+        <p>© {new Date().getFullYear()} 413Septic.com — Western Massachusetts Septic Guide</p>
+        <p>Built by <a href="https://banaswebdesign.com" class="text-forest-300 hover:text-white">Banas Web Design</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

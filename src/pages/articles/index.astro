@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles').catch(() => []);
+const sorted = [...allArticles].sort((a, b) => b.data.publishDate.localeCompare(a.data.publishDate));
+
+const categoryLabels: Record<string, string> = {
+  'cost-guide': 'Cost Guide',
+  'troubleshooting': 'Troubleshooting',
+  'new-homebuyer': 'New Homebuyer',
+  'regulatory': 'Regulatory',
+  'seasonal': 'Seasonal',
+  'town-specific': 'Town Specific',
+  'service-explainer': 'Service Explainer',
+  'tool': 'Tool',
+};
+---
+
+<BaseLayout
+  title="Septic System Articles — Western MA"
+  description="Guides, cost breakdowns, and how-tos for western Massachusetts homeowners with septic systems."
+>
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <Breadcrumbs crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Articles' },
+    ]} />
+
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Septic System Articles</h1>
+
+    {sorted.length === 0
+      ? <p class="text-gray-500">Articles coming soon. Check back for guides on pumping, inspections, costs, and more.</p>
+      : (
+        <div class="space-y-4">
+          {sorted.map(a => (
+            <a href={`/articles/${a.data.slug}/`} class="block bg-white border border-gray-200 rounded-lg p-4 hover:border-forest-400 hover:shadow-sm transition-all group">
+              <div class="flex items-start justify-between gap-3 mb-1">
+                <h2 class="font-bold text-forest-700 group-hover:text-forest-900">{a.data.title}</h2>
+                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full shrink-0">{categoryLabels[a.data.category] ?? a.data.category}</span>
+              </div>
+              <p class="text-sm text-gray-600">{a.data.metaDescription}</p>
+              <p class="text-xs text-gray-400 mt-2">{a.data.publishDate}</p>
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>
