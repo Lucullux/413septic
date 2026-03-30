@@ -35,8 +35,6 @@ const formId = `pump-form-${Math.random().toString(36).slice(2, 7)}`;
   <form
     id={formId}
     class="space-y-3"
-    action="https://design.us11.list-manage.com/subscribe/post?u=b5b8d3a94c49b2509f370a568&id=61c593d395&f_id=00edc2e1f0"
-    method="post"
     novalidate
   >
     <!-- Mailchimp requires EMAIL (uppercase) -->
@@ -95,10 +93,6 @@ const formId = `pump-form-${Math.random().toString(36).slice(2, 7)}`;
         ))}
       </select>
     </div>
-    <!-- Mailchimp bot-prevention honeypot — must be present and empty -->
-    <div style="position: absolute; left: -5000px;" aria-hidden="true">
-      <input type="text" name="b_b5b8d3a94c49b2509f370a568_61c593d395" tabindex="-1" value="" />
-    </div>
     <button
       type="submit"
       class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-2.5 px-4 rounded transition-colors text-sm"
@@ -113,11 +107,12 @@ const formId = `pump-form-${Math.random().toString(36).slice(2, 7)}`;
   const form = document.getElementById(formId);
   const successEl = document.getElementById(`${formId}-success`);
   const errorEl = document.getElementById(`${formId}-error`);
+  const submitBtn = form.querySelector('[type="submit"]');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = form.querySelector('[name="EMAIL"]').value;
+    const email = form.querySelector('[name="EMAIL"]').value.trim();
     if (!email) return;
 
     const houseSize = form.querySelector('[name="HOUSESIZE"]').value;
@@ -126,27 +121,38 @@ const formId = `pump-form-${Math.random().toString(36).slice(2, 7)}`;
       return;
     }
 
-    // Mailchimp doesn't support CORS POST directly, so we use a hidden iframe trick
-    const url = new URL(form.action.replace('/post?', '/post-json?'));
-    const params = new URLSearchParams(new FormData(form));
-    url.search = params.toString() + '&c=__mailchimpCallback__';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    errorEl.classList.add('hidden');
 
-    const callbackName = '__mailchimpCallback__';
-    window[callbackName] = (data) => {
-      delete window[callbackName];
-      script.remove();
-      if (data.result === 'success') {
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          EMAIL: email,
+          HOUSESIZE: houseSize,
+          LASTPUMP: form.querySelector('[name="LASTPUMP"]').value,
+          TOWN: form.querySelector('[name="TOWN"]').value,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
         form.classList.add('hidden');
         successEl.classList.remove('hidden');
-        errorEl.classList.add('hidden');
       } else {
-        errorEl.textContent = data.msg?.replace(/<[^>]*>/g, '') ?? 'Something went wrong. Please try again.';
+        errorEl.textContent = data.error ?? 'Something went wrong. Please try again.';
         errorEl.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Me a Reminder';
       }
-    };
-
-    const script = document.createElement('script');
-    script.src = url.toString();
-    document.body.appendChild(script);
+    } catch {
+      errorEl.textContent = 'Network error. Please check your connection and try again.';
+      errorEl.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Me a Reminder';
+    }
   });
 </script>
