@@ -12,6 +12,8 @@ const towns = [
   'Leyden','Monroe','Montague','New Salem','Northfield','Orange','Rowe',
   'Shelburne','Shutesbury','Sunderland','Warwick','Wendell','Whately',
 ];
+
+const formId = `pump-form-${Math.random().toString(36).slice(2, 7)}`;
 ---
 
 <div class={compact ? 'bg-earth-100 rounded-lg p-5 border border-earth-200' : 'bg-forest-50 border border-forest-200 rounded-xl p-6 md:p-8'}>
@@ -22,14 +24,28 @@ const towns = [
   {compact && (
     <h3 class="text-base font-bold text-forest-800 mb-3">Free Pump Reminder</h3>
   )}
-  <!-- Replace action URL with your ConvertKit/Mailchimp form action -->
-  <form class="space-y-3" action="https://design.us11.list-manage.com/subscribe/post?u=b5b8d3a94c49b2509f370a568&amp;id=61c593d395&amp;f_id=00edc2e1f0" method="post" name="pump-reminder">
+
+  <div id={`${formId}-success`} class="hidden bg-forest-50 border border-forest-300 rounded-lg p-4 text-forest-800 text-sm font-medium">
+    ✓ You're on the list. We'll remind you when it's time to pump.
+  </div>
+  <div id={`${formId}-error`} class="hidden bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 text-sm">
+    Something went wrong. Please try again or email us directly.
+  </div>
+
+  <form
+    id={formId}
+    class="space-y-3"
+    action="https://design.us11.list-manage.com/subscribe/post?u=b5b8d3a94c49b2509f370a568&id=61c593d395&f_id=00edc2e1f0"
+    method="post"
+    novalidate
+  >
+    <!-- Mailchimp requires EMAIL (uppercase) -->
     <div>
-      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email address <span class="text-red-500">*</span></label>
+      <label for={`${formId}-email`} class="block text-sm font-medium text-gray-700 mb-1">Email address <span class="text-red-500">*</span></label>
       <input
         type="email"
-        id="email"
-        name="email"
+        id={`${formId}-email`}
+        name="EMAIL"
         required
         placeholder="you@example.com"
         class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-forest-500 focus:border-transparent"
@@ -37,47 +53,51 @@ const towns = [
     </div>
     <div class="grid grid-cols-2 gap-3">
       <div>
-        <label for="household_size" class="block text-sm font-medium text-gray-700 mb-1">Household size <span class="text-red-500">*</span></label>
+        <label for={`${formId}-housesize`} class="block text-sm font-medium text-gray-700 mb-1">Household size <span class="text-red-500">*</span></label>
         <select
-          id="household_size"
-          name="household_size"
+          id={`${formId}-housesize`}
+          name="HOUSESIZE"
           required
           class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-forest-500 bg-white"
         >
           <option value="">Select...</option>
-          <option value="1-2">1–2 people</option>
-          <option value="3-4">3–4 people</option>
-          <option value="5+">5+ people</option>
+          <option value="1-2 people">1–2 people</option>
+          <option value="3-4 people">3–4 people</option>
+          <option value="5+ people">5+ people</option>
         </select>
       </div>
       <div>
-        <label for="last_pumped" class="block text-sm font-medium text-gray-700 mb-1">Last pumped</label>
+        <label for={`${formId}-lastpump`} class="block text-sm font-medium text-gray-700 mb-1">Last pumped</label>
         <select
-          id="last_pumped"
-          name="last_pumped"
+          id={`${formId}-lastpump`}
+          name="LASTPUMP"
           class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-forest-500 bg-white"
         >
           <option value="">Not sure</option>
-          <option value="under-1">Less than 1 year ago</option>
-          <option value="1-2">1–2 years ago</option>
-          <option value="3-4">3–4 years ago</option>
-          <option value="5+">5+ years ago</option>
-          <option value="never">Never / just bought the house</option>
+          <option value="Under 1 year">Less than 1 year ago</option>
+          <option value="1-2 years">1–2 years ago</option>
+          <option value="3-4 years">3–4 years ago</option>
+          <option value="5+ years">5+ years ago</option>
+          <option value="Never / new owner">Never / just bought the house</option>
         </select>
       </div>
     </div>
     <div>
-      <label for="town" class="block text-sm font-medium text-gray-700 mb-1">Your town</label>
+      <label for={`${formId}-town`} class="block text-sm font-medium text-gray-700 mb-1">Your town</label>
       <select
-        id="town"
-        name="town"
+        id={`${formId}-town`}
+        name="TOWN"
         class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-forest-500 bg-white"
       >
         <option value="">Other / not sure</option>
         {towns.map((t) => (
-          <option value={t.toLowerCase().replace(' ', '-')} selected={t.toLowerCase().replace(' ', '-') === preselectedTown}>{t}</option>
+          <option value={t} selected={t.toLowerCase().replace(' ', '-') === preselectedTown}>{t}</option>
         ))}
       </select>
+    </div>
+    <!-- Mailchimp bot-prevention honeypot — must be present and empty -->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+      <input type="text" name="b_b5b8d3a94c49b2509f370a568_61c593d395" tabindex="-1" value="" />
     </div>
     <button
       type="submit"
@@ -88,3 +108,45 @@ const towns = [
   </form>
   <p class="text-xs text-gray-500 mt-3">No spam. Unsubscribe anytime. Your information stays private.</p>
 </div>
+
+<script define:vars={{ formId }}>
+  const form = document.getElementById(formId);
+  const successEl = document.getElementById(`${formId}-success`);
+  const errorEl = document.getElementById(`${formId}-error`);
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = form.querySelector('[name="EMAIL"]').value;
+    if (!email) return;
+
+    const houseSize = form.querySelector('[name="HOUSESIZE"]').value;
+    if (!houseSize) {
+      form.querySelector('[name="HOUSESIZE"]').focus();
+      return;
+    }
+
+    // Mailchimp doesn't support CORS POST directly, so we use a hidden iframe trick
+    const url = new URL(form.action.replace('/post?', '/post-json?'));
+    const params = new URLSearchParams(new FormData(form));
+    url.search = params.toString() + '&c=__mailchimpCallback__';
+
+    const callbackName = '__mailchimpCallback__';
+    window[callbackName] = (data) => {
+      delete window[callbackName];
+      script.remove();
+      if (data.result === 'success') {
+        form.classList.add('hidden');
+        successEl.classList.remove('hidden');
+        errorEl.classList.add('hidden');
+      } else {
+        errorEl.textContent = data.msg?.replace(/<[^>]*>/g, '') ?? 'Something went wrong. Please try again.';
+        errorEl.classList.remove('hidden');
+      }
+    };
+
+    const script = document.createElement('script');
+    script.src = url.toString();
+    document.body.appendChild(script);
+  });
+</script>
