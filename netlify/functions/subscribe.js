@@ -34,7 +34,7 @@ export default async (req) => {
       },
       body: JSON.stringify({
         email_address: EMAIL,
-        status: 'pending', // double opt-in — change to 'subscribed' to skip confirmation email
+        status: 'subscribed',
         merge_fields: {
           HOUSESIZE,
           LASTPUMP: LASTPUMP || '',
