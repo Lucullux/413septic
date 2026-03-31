@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Wendell, MA
+
 
 Wendell is a small, rural community in southeastern Franklin County. With a population of approximately 930, the town has no municipal sewer system and all properties use private septic systems. Wendell is located within the **Quabbin Reservoir watershed**, which adds an important layer of regulatory consideration beyond standard Title 5 requirements. Health services are provided through CPHS.
 

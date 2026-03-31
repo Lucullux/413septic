@@ -2,7 +2,7 @@
 name: "River Valley Excavating"
 slug: river-valley-excavating
 tier: claimed
-location: "Greenfield, MA"
+location: "Greenfield"
 county: franklin
 inCounty: true
 yearsInBusiness: null

@@ -20,7 +20,7 @@ onlinePresenceQuality: none
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Heath, MA
+
 
 Heath is a small hilltowns community in northern Franklin County. With a population of approximately 700, Heath has no municipal sewer system, and all properties use private septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000).
 

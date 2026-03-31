@@ -2,7 +2,7 @@
 name: "Robert Adair Septic Services"
 slug: robert-adair-septic-services
 tier: free
-location: "Orange, MA"
+location: "Orange"
 county: franklin
 inCounty: true
 yearsInBusiness: null

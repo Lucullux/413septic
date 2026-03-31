@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Buckland, MA
+
 
 Buckland is a small Franklin County town situated along the Deerfield River. The town has no municipal sewer system, so all properties use private septic systems governed by **Massachusetts Title 5** (310 CMR 15.000).
 

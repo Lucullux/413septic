@@ -20,7 +20,7 @@ onlinePresenceQuality: none
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Leyden, MA
+
 
 Leyden is a very small rural community in northern Franklin County near the Vermont border. With a population of approximately 700, the town has no municipal sewer system, and all properties use private onsite septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000). Despite its small size, Leyden maintains an independent Board of Health.
 

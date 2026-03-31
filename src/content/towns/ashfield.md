@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Ashfield, MA
+
 
 Ashfield is a rural Franklin County town with no municipal sewer system. All properties rely on private septic systems, which are regulated under **Massachusetts Title 5** (310 CMR 15.000) — the statewide minimum standard for onsite sewage disposal.
 

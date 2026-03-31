@@ -2,7 +2,7 @@
 name: "Clayton Davenport Trucking"
 slug: clayton-davenport-trucking
 tier: free
-location: "Colrain, MA"
+location: "Colrain"
 county: franklin
 inCounty: true
 yearsInBusiness: null

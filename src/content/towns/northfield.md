@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Northfield, MA
+
 
 Northfield is a Franklin County town situated along the Connecticut River near the New Hampshire border. With a population of approximately 2,800, Northfield has **partial municipal sewer coverage**, with some portions of town served by a sewer system and other areas relying on private septic systems.
 

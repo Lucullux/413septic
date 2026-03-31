@@ -2,7 +2,7 @@
 name: "Fletcher Sewer & Drain"
 slug: fletcher-sewer-and-drain
 tier: claimed
-location: "Greenfield, MA"
+location: "Greenfield"
 county: franklin
 inCounty: true
 yearsInBusiness: null

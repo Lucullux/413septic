@@ -2,7 +2,7 @@
 name: "Homestead, Inc."
 slug: homestead-inc
 tier: free
-location: "Charlemont, MA"
+location: "Charlemont"
 county: franklin
 inCounty: true
 yearsInBusiness: null

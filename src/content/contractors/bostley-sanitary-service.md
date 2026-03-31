@@ -2,7 +2,7 @@
 name: "Bostley Sanitary Service, Inc."
 slug: bostley-sanitary-service
 tier: claimed
-location: "Colrain, MA"
+location: "Colrain"
 county: franklin
 inCounty: true
 yearsInBusiness: null

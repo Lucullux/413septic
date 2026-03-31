@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Whately, MA
+
 
 Whately is a small agricultural community in Franklin County situated in the Connecticut River valley. The town has no municipal sewer system, and all properties rely on private onsite septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000). Whately is unique in Franklin County as the only town served by the **Foothills Health District**.
 

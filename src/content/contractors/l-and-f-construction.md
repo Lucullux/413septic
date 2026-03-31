@@ -2,7 +2,7 @@
 name: "L & F Construction"
 slug: l-and-f-construction
 tier: free
-location: "Orange, MA"
+location: "Orange"
 county: franklin
 inCounty: true
 yearsInBusiness: null

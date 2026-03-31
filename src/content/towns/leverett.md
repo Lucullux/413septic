@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Leverett, MA
+
 
 Leverett is a small rural community in central Franklin County with a strong tradition of engaged local governance. The town has no municipal sewer system, and all properties rely on private septic systems. Leverett is notable as one of the few CPHS-served towns that has **confirmed active local septic regulations beyond the Massachusetts Title 5 minimum**.
 

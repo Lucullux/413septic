@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Orange, MA
+
 
 Orange is one of the larger towns in Franklin County, with a population of approximately 7,600. The town has **partial municipal sewer coverage**, with a sewer system serving denser areas while outlying properties depend on private septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000). Orange maintains an independent Board of Health.
 

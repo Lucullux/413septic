@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Shutesbury, MA
+
 
 Shutesbury is a small Franklin County community located within the **Quabbin Reservoir watershed**. The town has no municipal sewer system, and all properties rely on private septic systems. Shutesbury is classified as an independent BOH town, but the Quabbin watershed designation adds a significant layer of regulatory consideration beyond standard Title 5.
 

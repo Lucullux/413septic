@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in New Salem, MA
+
 
 New Salem is a small Franklin County community located directly within the **Quabbin Reservoir watershed** — one of the most significant drinking water supply watersheds in New England. This location has important implications for septic system regulation beyond the standard Title 5 requirements.
 

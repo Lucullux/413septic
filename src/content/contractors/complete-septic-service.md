@@ -2,7 +2,7 @@
 name: "Complete Septic Service"
 slug: complete-septic-service
 tier: claimed
-location: "Montague, MA"
+location: "Montague"
 county: franklin
 inCounty: true
 yearsInBusiness: null

@@ -2,7 +2,7 @@
 name: "Harris Septic Services"
 slug: harris-septic-services
 tier: claimed
-location: "Greenfield, MA"
+location: "Greenfield"
 county: franklin
 inCounty: true
 yearsInBusiness: null

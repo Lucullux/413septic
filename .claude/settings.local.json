@@ -5,7 +5,14 @@
       "Bash(npx astro:*)",
       "Bash(done)",
       "Bash(grep -l \"partialSewer: true\\\\|hasMunicipalSewer: true\" /Users/zacbanas/Documents/septicproject/src/content/towns/*.md)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(grep -n \"location\" /Users/zacbanas/Documents/septicproject/src/pages/directory/[slug].astro)",
+      "Bash(grep -n \"^location:\" /Users/zacbanas/Documents/septicproject/src/content/contractors/*.md)",
+      "Bash(grep -rn \"^# \" /Users/zacbanas/Documents/septicproject/src/content/towns/*.md)",
+      "Bash(for f:*)",
+      "Bash(do sed:*)",
+      "Bash(grep -c \"^# \" src/content/towns/*.md)",
+      "Bash(grep -n \"^location:\" src/content/contractors/*.md)"
     ]
   }
 }

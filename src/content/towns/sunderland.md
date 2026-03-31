@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Sunderland, MA
+
 
 Sunderland is a Franklin County town in the Connecticut River valley, home to approximately 3,700 residents including a large student population from the University of Massachusetts. The town has no municipal sewer system, and all properties rely on private septic systems. Sunderland is one of the Franklin County towns with **confirmed local septic design standards that are more stringent than the Massachusetts Title 5 minimum**.
 

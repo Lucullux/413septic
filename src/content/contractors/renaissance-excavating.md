@@ -2,7 +2,7 @@
 name: "Renaissance Excavating"
 slug: renaissance-excavating
 tier: free
-location: "Buckland, MA"
+location: "Buckland"
 county: franklin
 inCounty: true
 yearsInBusiness: null

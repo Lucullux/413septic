@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Conway, MA
+
 
 Conway is a rural Franklin County hilltowns community. The town has no municipal sewer system; all properties use private onsite septic systems. Conway is notable among the CPHS-served towns because it has **confirmed local septic regulations that go beyond the Massachusetts Title 5 state minimum**.
 

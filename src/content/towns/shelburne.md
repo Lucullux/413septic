@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Shelburne, MA
+
 
 Shelburne is a small Franklin County community located along the Deerfield River. The town has no municipal sewer system, and all properties rely on private onsite septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000). Shelburne maintains its own independent Board of Health.
 

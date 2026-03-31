@@ -20,7 +20,7 @@ onlinePresenceQuality: none
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Monroe, MA
+
 
 Monroe is one of the smallest municipalities in Massachusetts, with a population of approximately 120 people. It is a remote hilltowns community in the far northwestern corner of Franklin County. The town has no municipal sewer system, and all properties use private septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000).
 

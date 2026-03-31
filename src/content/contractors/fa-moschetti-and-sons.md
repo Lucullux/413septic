@@ -2,7 +2,7 @@
 name: "F.A. Moschetti & Sons"
 slug: fa-moschetti-and-sons
 tier: claimed
-location: "Sunderland, MA"
+location: "Sunderland"
 county: franklin
 inCounty: true
 yearsInBusiness: 50

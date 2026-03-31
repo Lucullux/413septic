@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Bernardston, MA
+
 
 Bernardston is a small Franklin County town located near the Vermont border. The town has no municipal sewer system, meaning all residential and commercial properties depend on private septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000).
 

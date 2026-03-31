@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Deerfield, MA
+
 
 Deerfield is one of Franklin County's larger communities, encompassing the historic village center and several rural villages. The town has no municipal sewer system, and all properties rely on private septic systems. Deerfield is among the most notable towns in Franklin County for **having confirmed local septic regulations that are significantly stricter than the Massachusetts Title 5 minimum**.
 

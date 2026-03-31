@@ -17,9 +17,10 @@ const {
   schema,
 } = Astro.props;
 
-const fullTitle = title === '413Septic.com'
-  ? title
-  : `${title} | 413Septic.com`;
+const baseTitle = title.replace(/\s*\|\s*413Septic\.com\s*$/i, '').trim();
+const fullTitle = baseTitle === '413Septic.com'
+  ? baseTitle
+  : `${baseTitle} | 413Septic.com`;
 
 const canonical = canonicalURL ?? new URL(Astro.url.pathname, Astro.site).href;
 

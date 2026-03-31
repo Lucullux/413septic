@@ -20,7 +20,7 @@ onlinePresenceQuality: good
 phoneVerificationNeeded: false
 ---
 
-# Septic System Regulations in Greenfield, MA
+
 
 Greenfield is the county seat of Franklin County and by far the largest municipality in the region. As the urban center of Franklin County, Greenfield has a **full municipal sewer system** serving the town. Most properties in Greenfield are connected to the municipal wastewater treatment system and are not subject to Title 5 or septic permitting requirements.
 

@@ -27,20 +27,30 @@ const schema = [
     '@type': 'WebSite',
     name: '413Septic.com',
     url: 'https://413septic.com',
-    description: 'Your local guide to septic systems in western Massachusetts.',
+    description: 'Septic contractor directory and Title 5 guide for Franklin County, MA.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://413septic.com/directory/?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
   },
   {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: '413Septic.com',
     url: 'https://413septic.com',
-    areaServed: { '@type': 'AdministrativeArea', name: 'Franklin County, MA' },
+    logo: 'https://413septic.com/your-logo.png',
+    areaServed: {
+      '@type': 'AdministrativeArea',
+      name: 'Franklin County, MA',
+    },
+    knowsAbout: ['septic systems', 'Title 5 inspection', 'septic pumping', 'Franklin County MA'],
   },
 ];
 ---
 
 <BaseLayout
-  title="413Septic.com"
+  title="Franklin County Septic Contractors & Title 5 Guide | 413Septic.com"
   description="Your local guide to septic systems in western Massachusetts. Find contractors, look up town regulations, and get a free pump reminder."
   schema={schema}
 >
@@ -48,10 +58,10 @@ const schema = [
   <section class="bg-forest-700 text-white py-12 px-4">
     <div class="max-w-4xl mx-auto text-center">
       <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
-        413Septic.com — Your Septic System Guide for Western MA
+        Septic Contractors &amp; Regulations for Franklin County, MA
       </h1>
       <p class="text-forest-100 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-        Find local contractors, look up your town's regulations, and get a free reminder when it's time to pump.
+        Find local septic companies, look up your town's Title 5 rules, and get a free reminder when it's time to pump.
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-3">
         <a href="/directory/" class="bg-white text-forest-800 hover:bg-earth-100 font-bold px-6 py-3 rounded-lg text-base transition-colors">

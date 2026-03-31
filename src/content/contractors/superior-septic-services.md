@@ -2,7 +2,7 @@
 name: "Superior Septic Services"
 slug: superior-septic-services
 tier: free
-location: "Greenfield, MA"
+location: "Greenfield"
 county: franklin
 inCounty: true
 yearsInBusiness: null

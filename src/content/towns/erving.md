@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Erving, MA
+
 
 Erving is a small Franklin County town along the Miller's River corridor. The town does not have a municipal sewer system, and all properties use private onsite septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000). Erving has its own independent Board of Health.
 

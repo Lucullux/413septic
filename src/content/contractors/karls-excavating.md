@@ -2,7 +2,7 @@
 name: "Karl's Excavating"
 slug: karls-excavating
 tier: free
-location: "Shelburne, MA"
+location: "Shelburne"
 county: franklin
 inCounty: true
 yearsInBusiness: null

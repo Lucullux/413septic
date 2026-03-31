@@ -2,7 +2,7 @@
 name: "Kevin Komosa Enterprises"
 slug: kevin-komosa-enterprises
 tier: free
-location: "Northfield, MA"
+location: "Northfield"
 county: franklin
 inCounty: true
 yearsInBusiness: null

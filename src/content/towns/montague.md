@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Montague, MA
+
 
 Montague is a multi-village community in Franklin County with a population of approximately 8,600. It is one of the larger towns in the county. Montague has **partial municipal sewer coverage** — some areas of town are served by the municipal sewer system, while other areas (particularly more rural villages) rely on private septic systems.
 

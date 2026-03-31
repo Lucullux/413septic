@@ -2,7 +2,7 @@
 name: "Morawski Excavating"
 slug: morawski-excavating
 tier: free
-location: "Greenfield, MA"
+location: "Greenfield"
 county: franklin
 inCounty: true
 yearsInBusiness: null

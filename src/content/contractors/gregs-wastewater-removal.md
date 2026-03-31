@@ -2,7 +2,7 @@
 name: "Greg's Wastewater Removal"
 slug: gregs-wastewater-removal
 tier: free
-location: "Gill, MA"
+location: "Gill"
 county: franklin
 inCounty: true
 yearsInBusiness: null

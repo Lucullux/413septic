@@ -20,7 +20,7 @@ onlinePresenceQuality: none
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Warwick, MA
+
 
 Warwick is a small, remote community in eastern Franklin County with a population of approximately 780. The town has no municipal sewer system, and all properties rely on private onsite septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000). Despite its small size, Warwick maintains an independent Board of Health.
 

@@ -20,7 +20,7 @@ onlinePresenceQuality: none
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Rowe, MA
+
 
 Rowe is one of the smallest communities in Franklin County, with a population of approximately 380 people. Located in the remote northwestern corner of the county near the Hoosac Range, Rowe has no municipal sewer system, and all properties rely on private onsite septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000).
 

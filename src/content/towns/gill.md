@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Gill, MA
+
 
 Gill is a small Franklin County town situated on a peninsula at the confluence of the Connecticut and Millers Rivers. The town has no municipal sewer system, and all properties use private septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000).
 

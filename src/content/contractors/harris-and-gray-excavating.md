@@ -2,7 +2,7 @@
 name: "Harris & Gray Excavating"
 slug: harris-and-gray-excavating
 tier: claimed
-location: "Deerfield, MA"
+location: "Deerfield"
 county: franklin
 inCounty: true
 yearsInBusiness: null

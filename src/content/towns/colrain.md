@@ -20,7 +20,7 @@ onlinePresenceQuality: limited
 phoneVerificationNeeded: true
 ---
 
-# Septic System Regulations in Colrain, MA
+
 
 Colrain is a hilltowns community in northern Franklin County. Like most rural Franklin County towns, Colrain has no municipal sewer system, and all properties depend on private septic systems regulated under **Massachusetts Title 5** (310 CMR 15.000).
 
