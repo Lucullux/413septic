@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: good
 phoneVerificationNeeded: false
+metaDescription: "Greenfield, MA septic contractors, sewer and septic guidance, local regulations, and contractor listings for homeowners."
+regulationsMetaDescription: "Greenfield, MA septic regulations, sewer-vs-septic guidance, and local requirements for inspections and repairs."
+intro: "Greenfield is one of the few Franklin County towns where sewer access exists in some areas but not everywhere. That makes it especially important for homeowners to confirm whether a property is on municipal sewer or a private septic system before relying on generic advice about inspections, pumping schedules, or replacement costs."
+regulationsIntro: "Greenfield regulations matter because not every property in town is in the same situation. Some homes are connected to sewer, others depend on private septic systems, and that split makes it especially important to confirm which rules apply before planning work or evaluating a property transfer."
 ---
 
 

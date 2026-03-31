@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Shelburne, MA septic contractors, local septic regulations, and practical guidance for homeowners and rural properties."
+regulationsMetaDescription: "Shelburne, MA septic regulations, Board of Health guidance, and local requirements for permits and system work."
+intro: "Shelburne homeowners often need practical septic information that matches local conditions, not broad statewide boilerplate. This page is meant to help you find contractor options, understand local regulation basics, and avoid going into a septic project blind."
+regulationsIntro: "Shelburne septic regulations matter most when homeowners assume a project will be simpler than it really is. Checking the local requirements up front helps you understand permitting, approvals, and next steps before money starts moving."
 ---
 
 

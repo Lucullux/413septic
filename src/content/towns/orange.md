@@ -18,6 +18,10 @@ watershedOverlay: true
 watershedDetails: "Portions of Orange fall within or near the Millers River watershed and eastern Franklin County water resource areas. Some parcels may be subject to additional environmental review."
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Orange, MA septic contractors, local septic regulations, and guidance for repairs, replacements, and home sales."
+regulationsMetaDescription: "Orange, MA septic regulations, local permitting guidance, and Board of Health information for septic system work."
+intro: "Orange has a large enough footprint that septic needs can vary a lot from property to property. Rural lots, older systems, and the cost of major repairs make it worth checking regulations and contractor coverage early, especially if you are buying a home, planning work, or trying to avoid an expensive surprise after a backup or failed inspection."
+regulationsIntro: "Orange septic regulations are worth checking early, especially for homeowners dealing with older systems or rural lots. A quick review of the local permitting and Board of Health process can save time, prevent bad assumptions, and make contractor conversations much more productive."
 ---
 
 

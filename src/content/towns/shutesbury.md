@@ -18,6 +18,10 @@ watershedOverlay: true
 watershedDetails: "Shutesbury is located within the Quabbin Reservoir watershed. Septic systems may be subject to Massachusetts DCR watershed protection regulations in addition to Title 5."
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Shutesbury, MA septic contractors, local regulations, and septic guidance for rural lots and system planning."
+regulationsMetaDescription: "Shutesbury, MA septic regulations, local Board of Health guidance, and septic permitting information for rural lots."
+intro: "Shutesbury properties can raise septic questions that are easier to answer with town-specific context than with a generic Massachusetts article. If you are trying to line up work, understand local oversight, or make sense of a potential repair or replacement, this page gives you a better place to start."
+regulationsIntro: "Shutesbury homeowners should confirm local septic rules before scheduling work, especially when dealing with a system that may need more than routine pumping or maintenance. A quick review of the local process can make contractor discussions much more grounded from the start."
 ---
 
 

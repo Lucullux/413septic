@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Ashfield, MA septic contractors, local regulations, and Board of Health guidance. Find septic services and town-specific information in one place."
+regulationsMetaDescription: "Ashfield, MA septic regulations, Board of Health guidance, and local requirements for inspections, repairs, and replacements."
+intro: "Ashfield septic questions are easier to handle when you can see the local picture in one place. Whether you are dealing with routine pumping, a home sale, or a system that may need major work, this page is meant to give you a clearer town-specific starting point."
+regulationsIntro: "Ashfield septic regulations are worth reviewing before a homeowner moves ahead with pumping, inspection follow-up, repair, or full replacement planning. Starting with the local rules helps reduce delays and makes the rest of the project easier to navigate."
 ---
 
 

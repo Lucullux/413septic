@@ -18,6 +18,10 @@ watershedOverlay: true
 watershedDetails: "Wendell is located within the Quabbin Reservoir watershed. Septic systems in this town may be subject to Massachusetts DCR watershed protection regulations in addition to Title 5."
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Wendell, MA septic contractors, local regulations, and septic guidance for rural properties and aging systems."
+regulationsMetaDescription: "Wendell, MA septic regulations, Board of Health guidance, and local requirements for septic permits and repairs."
+intro: "Wendell homeowners often need septic information that reflects the realities of rural lots and aging systems, not just the broad outline of Title 5. This page should make it easier to understand the local process, compare contractor coverage, and figure out what kind of work may be involved."
+regulationsIntro: "Wendell homeowners should check local septic requirements before planning any major system work. Even when the state rules seem familiar, the local permitting and Board of Health process still controls how the project moves from idea to approval."
 ---
 
 

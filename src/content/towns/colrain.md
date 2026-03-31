@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Find septic contractors, local regulations, and septic guidance for Colrain, MA homeowners and rural properties."
+regulationsMetaDescription: "Colrain, MA septic regulations, Board of Health guidance, and local requirements for septic repairs and replacements."
+intro: "Colrain properties often come with the kind of rural conditions that make septic decisions less predictable than they look on paper. If you own a home here, it helps to sort out local regulations and contractor availability early, especially when an older system starts showing signs of trouble."
+regulationsIntro: "Colrain septic regulations are worth checking early, especially on rural properties where site conditions can complicate even basic project planning. Reviewing the local process first helps homeowners avoid bad assumptions before they hire a contractor or move ahead with design work."
 ---
 
 

@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Sunderland, MA septic contractors, local regulations, and septic guidance for repairs, inspections, and property planning."
+regulationsMetaDescription: "Sunderland, MA septic regulations, local rules beyond Title 5, and Board of Health guidance for septic work."
+intro: "Sunderland includes both more developed areas and properties where local rules can matter beyond basic Title 5 expectations. That makes it smart to verify the local setup before scheduling work, buying a home, or assuming a standard repair path will apply."
+regulationsIntro: "Sunderland has local septic considerations beyond a bare Title 5 summary, so homeowners should verify the local rules before assuming a standard permit path. That is especially true when planning work on properties where local conditions or local oversight may change the details."
 ---
 
 

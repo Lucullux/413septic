@@ -58,6 +58,10 @@ const towns = defineCollection({
     watershedDetails: z.string().nullable().optional(),
     onlinePresenceQuality: z.enum(['good', 'limited', 'none']).default('limited'),
     phoneVerificationNeeded: z.boolean().default(false),
+    metaDescription: z.string().nullable().optional(),
+    regulationsMetaDescription: z.string().nullable().optional(),
+    intro: z.string().nullable().optional(),
+    regulationsIntro: z.string().nullable().optional(),
   }),
 });
 

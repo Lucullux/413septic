@@ -18,6 +18,10 @@ watershedOverlay: true
 watershedDetails: "New Salem is located within the Quabbin Reservoir watershed. Septic systems in this town are subject to Massachusetts Department of Conservation and Recreation (DCR) watershed protection regulations in addition to Title 5."
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "New Salem, MA septic contractors, local regulations, and septic guidance for rural property owners."
+regulationsMetaDescription: "New Salem, MA septic regulations, local Board of Health guidance, and septic permitting information."
+intro: "New Salem homeowners usually benefit from checking local septic information before treating a project like a standard contractor job. Rural lots, system age, and local review can all shape what the process looks like once pumping, inspection, or repair work is on the table."
+regulationsIntro: "New Salem homeowners should verify local septic requirements before planning repairs, replacements, or inspections tied to a sale. Even when Massachusetts Title 5 provides the baseline, local review still shapes what the process looks like on the ground."
 ---
 
 

@@ -18,6 +18,10 @@ watershedOverlay: true
 watershedDetails: "Portions of Erving fall within the Millers River watershed and near Quabbin-area sensitive water resources; some parcels may be subject to additional review."
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Erving, MA septic contractors, Board of Health information, and septic guidance for pumping, inspections, and repairs."
+regulationsMetaDescription: "Erving, MA septic regulations, Board of Health guidance, and local permitting information for homeowners."
+intro: "Erving homeowners dealing with septic issues usually need fast clarity, not a pile of state jargon. This page is designed to make it easier to find who serves the town, what local oversight looks like, and what to expect when you need pumping, a Title 5 inspection, or a larger repair."
+regulationsIntro: "Erving homeowners should confirm local septic rules before scheduling work, because even straightforward projects can hinge on permitting and local review. This page is meant to make the local process easier to understand before you spend money on design, excavation, or repairs."
 ---
 
 

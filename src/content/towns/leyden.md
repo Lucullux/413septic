@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: none
 phoneVerificationNeeded: true
+metaDescription: "Leyden, MA septic contractors, local Board of Health guidance, and septic information for rural homeowners."
+regulationsMetaDescription: "Leyden, MA septic regulations, Board of Health guidance, and local requirements for septic repairs and replacements."
+intro: "Leyden homeowners often need a cleaner local starting point than scattered regulations pages and contractor guesses. This page is meant to make septic planning simpler by putting contractor coverage, local oversight, and the basics of pumping, inspection, and repair in one place."
+regulationsIntro: "Leyden homeowners should verify local septic requirements before assuming a repair or replacement will be straightforward. Checking the local rules early gives you a better sense of what permitting, approvals, and contractor planning may actually involve."
 ---
 
 

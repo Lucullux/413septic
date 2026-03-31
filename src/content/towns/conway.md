@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Conway, MA septic contractors, local septic regulations, and Board of Health guidance for repairs, inspections, and replacements."
+regulationsMetaDescription: "Conway, MA septic regulations, local rules beyond Title 5, and Board of Health guidance for septic work."
+intro: "Conway already carries local regulations beyond basic state Title 5 requirements, so homeowners should not assume the Massachusetts minimum is the whole story. This page is meant to help you check the local picture first, then find contractors and plan work with fewer surprises."
+regulationsIntro: "Conway has local septic regulations that go beyond state Title 5 requirements, so this is not a town where homeowners should rely on the Massachusetts minimum alone. If you are planning work in Conway, confirm the local rules first and treat them as part of the project from day one."
 ---
 
 

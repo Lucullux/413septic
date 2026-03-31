@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Buckland, MA septic contractors, regulations, and local septic guidance for pumping, inspections, repairs, and replacements."
+regulationsMetaDescription: "Buckland, MA septic regulations, permitting guidance, and local septic requirements for rural property owners."
+intro: "Buckland homeowners often need a practical local overview before they start calling contractors or filing paperwork. This page is here to make the town-specific side of septic ownership easier to understand, especially if you are dealing with a rural property, an older system, or a potential repair decision."
+regulationsIntro: "Buckland homeowners should review local septic requirements before starting a project, especially on rural properties where system design and permitting are not always simple. This page is here to give you a cleaner starting point before you contact the Board of Health or hire a contractor."
 ---
 
 

@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: none
 phoneVerificationNeeded: true
+metaDescription: "Rowe, MA septic contractors, local regulations, and septic guidance for hilltown and rural properties."
+regulationsMetaDescription: "Rowe, MA septic regulations, local Board of Health guidance, and hilltown septic requirements for homeowners."
+intro: "Rowe homeowners often need septic information that reflects remote hilltown realities rather than generic Massachusetts guidance. This page is designed to help you sort out local oversight, contractor availability, and the practical next steps involved in pumping, inspection, repair, or replacement work."
+regulationsIntro: "Rowe homeowners should verify local septic requirements before planning major work, especially on remote properties where site conditions can shape what a project actually demands. Starting with the local rules helps avoid treating a hilltown septic job like a routine service call."
 ---
 
 

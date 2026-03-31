@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: none
 phoneVerificationNeeded: true
+metaDescription: "Heath, MA septic contractors, local septic regulations, and hilltown guidance for pumping, inspections, and replacements."
+regulationsMetaDescription: "Heath, MA septic regulations, hilltown septic guidance, and local requirements for repairs, inspections, and replacements."
+intro: "Heath is the kind of hilltown where septic work can get more technical than homeowners expect. With no municipal sewer system and tougher site conditions than many valley towns, it helps to check local requirements and contractor coverage before a repair or replacement becomes urgent."
+regulationsIntro: "Heath homeowners should check local septic requirements before planning any major work, especially because hilltown conditions can make septic design and replacement more demanding than in lower-elevation towns. Reviewing the local process first helps set better expectations for cost, design, and permitting."
 ---
 
 

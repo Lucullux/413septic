@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: none
 phoneVerificationNeeded: true
+metaDescription: "Monroe, MA septic contractors, local septic guidance, and rural property information for inspections, pumping, and repairs."
+regulationsMetaDescription: "Monroe, MA septic regulations, local Board of Health guidance, and septic requirements for rural homeowners."
+intro: "Monroe homeowners are usually dealing with septic questions in a small-town, fully septic-dependent context where local clarity matters more than volume of options. This page is meant to help you quickly see what rules apply, who serves the town, and what to expect if a system issue turns into a real project."
+regulationsIntro: "Monroe homeowners should review local septic requirements before starting work, especially in a town where private systems are the default and contractor options may be narrower than in larger places. Local clarity matters more when mistakes are expensive and delays are hard to unwind."
 ---
 
 

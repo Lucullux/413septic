@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Charlemont, MA septic contractors, regulations, and local septic guidance for rural properties and system planning."
+regulationsMetaDescription: "Charlemont, MA septic regulations, local permitting guidance, and hilltown septic requirements for homeowners."
+intro: "Charlemont homeowners often need septic information that matches hilltown conditions rather than generic statewide advice. If you own a rural property here, it helps to understand local oversight, contractor coverage, and the kind of system work that can get more complicated when terrain and site conditions are part of the equation."
+regulationsIntro: "Charlemont homeowners should review local septic requirements before starting work, especially on hilltown properties where design, access, and site conditions can complicate what looks like a standard project. Checking the local process first helps you move forward with better expectations."
 ---
 
 

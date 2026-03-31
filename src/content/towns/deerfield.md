@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Deerfield, MA septic contractors, local regulations, and septic guidance for homeowners inside and outside sewered areas."
+regulationsMetaDescription: "Deerfield, MA septic regulations, Board of Health guidance, and local requirements for septic permits and system work."
+intro: "Deerfield homeowners often need septic information that goes beyond a basic statewide summary. Between older housing stock, rural lots outside sewered areas, and the need to verify local Board of Health requirements before work begins, it helps to have one place to check contractors, regulations, and next steps before a repair or replacement turns urgent."
+regulationsIntro: "Deerfield septic regulations should be checked carefully before any new installation, repair, or replacement work begins. Even when Massachusetts Title 5 sets the baseline, local Board of Health requirements and property-specific conditions can affect what is allowed, what needs approval, and how long the process takes."
 ---
 
 

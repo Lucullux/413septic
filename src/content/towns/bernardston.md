@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Find septic contractors, local septic information, and Board of Health guidance for Bernardston, MA homeowners."
+regulationsMetaDescription: "Bernardston, MA septic regulations, permitting guidance, and local Board of Health information for septic work."
+intro: "Bernardston homeowners usually need a straightforward local starting point before a septic issue turns into a rushed repair. This page is built to help you check contractor options, understand local oversight, and get your bearings before scheduling pumping, inspection, or replacement work."
+regulationsIntro: "Bernardston homeowners should confirm local septic requirements before treating any project as a routine Title 5 matter. Local permitting, Board of Health review, and property-specific conditions can all affect how a repair, upgrade, or replacement actually moves forward."
 ---
 
 

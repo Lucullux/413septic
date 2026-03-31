@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: none
 phoneVerificationNeeded: true
+metaDescription: "Hawley, MA septic contractors, local septic guidance, and regulations for rural and hilltown properties."
+regulationsMetaDescription: "Hawley, MA septic regulations, local permitting guidance, and hilltown septic requirements for rural properties."
+intro: "Hawley homeowners usually need septic guidance built for remote, rural properties rather than valley-town assumptions. This page is here to help you understand local oversight, compare contractor options, and get a clearer sense of what septic work can involve when access, terrain, and system age are part of the picture."
+regulationsIntro: "Hawley homeowners should review local septic requirements before assuming a project will follow the simplest possible path. On remote and hilltown properties, local review and site conditions can shape permitting, design, and what a contractor actually recommends."
 ---
 
 

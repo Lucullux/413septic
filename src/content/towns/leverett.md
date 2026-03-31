@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Leverett, MA septic contractors, local regulations, and septic guidance for property owners and home buyers."
+regulationsMetaDescription: "Leverett, MA septic regulations, Board of Health guidance, and local requirements for septic work and permitting."
+intro: "Leverett is the kind of town where septic ownership usually comes with more site-specific questions than a basic checklist can answer. Whether you are planning work, buying a home, or dealing with an older system, this page should help you get a clearer local picture before you spend money."
+regulationsIntro: "Leverett septic regulations should be checked before any major work begins, especially when a system issue may require permitting, design, or Board of Health approval. Looking at the local rules first can save time and reduce confusion once the project becomes real."
 ---
 
 

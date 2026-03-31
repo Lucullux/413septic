@@ -18,6 +18,10 @@ watershedOverlay: true
 watershedDetails: "Warwick contains headwaters and tributaries that drain toward the Millers River and Quabbin-area watershed zones. Some parcels may be subject to watershed protection considerations."
 onlinePresenceQuality: none
 phoneVerificationNeeded: true
+metaDescription: "Warwick, MA septic contractors, watershed-aware local septic guidance, and Board of Health information."
+regulationsMetaDescription: "Warwick, MA septic regulations, watershed-aware local guidance, and septic permitting information for homeowners."
+intro: "Warwick homeowners dealing with septic issues usually need clarity fast, especially on rural properties where system problems can escalate quietly. This page is built to help you check local requirements, see who serves the town, and plan your next step with fewer assumptions."
+regulationsIntro: "Warwick septic regulations should be reviewed early, particularly for rural properties where repair and replacement work may involve more review than expected. This page is here to help homeowners understand the local framework before treating the project like a basic service call."
 ---
 
 

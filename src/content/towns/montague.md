@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Montague, MA septic contractors, local regulations, and septic guidance for village and outlying properties."
+regulationsMetaDescription: "Montague, MA septic regulations, Board of Health guidance, and local requirements for village and rural properties."
+intro: "Montague has a mix of village density and outlying properties, which means septic questions are not always one-size-fits-all. If you own a home outside the sewered areas, this page is meant to help you quickly sort out local regulations, contractor options, and the practical steps involved in pumping, inspections, repairs, or replacement planning."
+regulationsIntro: "Montague homeowners should verify local septic requirements before treating any project like a standard Title 5 job. Property location, sewer availability, and local Board of Health oversight can all affect whether a repair, inspection, or replacement follows the simplest path."
 ---
 
 

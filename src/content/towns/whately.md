@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Whately, MA septic contractors, local regulations, and septic guidance for pumping, inspections, repairs, and replacements."
+regulationsMetaDescription: "Whately, MA septic regulations, local Board of Health guidance, and septic permitting requirements for homeowners."
+intro: "Whately homeowners usually do not need more septic theory. They need to know who serves the town, whether local requirements go beyond state rules, and what to do next when a system needs pumping, inspection, repair, or replacement. This page is built to answer those questions quickly."
+regulationsIntro: "Whately homeowners should check local septic requirements before any major work begins. Even where the state framework is familiar, the local Board of Health process still controls how permits, reviews, and approvals move forward."
 ---
 
 

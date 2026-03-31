@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Northfield, MA septic contractors, local regulations, and septic guidance for inspections, pumping, and system repairs."
+regulationsMetaDescription: "Northfield, MA septic regulations, Board of Health guidance, and local requirements for inspections, repairs, and permits."
+intro: "Northfield properties often combine rural conditions with aging systems, which makes septic planning more important than many homeowners realize. Whether you are trying to line up a contractor, understand local requirements, or figure out what a failed inspection actually means, this page should give you a more useful starting point than a generic statewide article."
+regulationsIntro: "Northfield septic regulations shape what homeowners can do when a system fails, a property is sold, or a replacement is being planned. Reviewing the local requirements first helps you avoid treating a regulated process like a simple contractor call."
 ---
 
 

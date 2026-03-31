@@ -18,6 +18,10 @@ watershedOverlay: false
 watershedDetails: null
 onlinePresenceQuality: limited
 phoneVerificationNeeded: true
+metaDescription: "Gill, MA septic contractors, local septic information, and town-specific guidance for repairs, pumping, and inspections."
+regulationsMetaDescription: "Gill, MA septic regulations, local Board of Health guidance, and requirements for septic work and permits."
+intro: "Gill homeowners often need septic guidance that fits rural property realities, not just a generic state summary. This page is here to make it easier to check local rules, compare contractors, and understand what to do next if your system needs pumping, inspection, repair, or replacement."
+regulationsIntro: "Gill homeowners should review local septic requirements before starting work, because the practical path from inspection to repair is not always as simple as a statewide summary makes it sound. This page is meant to make the local side of that process easier to understand."
 ---
 
 

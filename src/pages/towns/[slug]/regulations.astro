@@ -29,7 +29,7 @@ const schema = {
 
 <BaseLayout
   title={`Septic Regulations in ${data.name}, MA`}
-  description={`Local septic regulations for ${data.name}, MA. Board of Health contacts, Title 5 requirements, and any local additions. ${data.hasLocalSepticRegs ? 'Stricter local rules apply.' : ''}`}
+  description={data.regulationsMetaDescription ?? `Local septic regulations for ${data.name}, MA. Board of Health contacts, Title 5 requirements, and any local additions. ${data.hasLocalSepticRegs ? 'Stricter local rules apply.' : ''}`}
   schema={schema}
 >
   <div class="max-w-3xl mx-auto px-4 py-8">
@@ -40,7 +40,12 @@ const schema = {
       { label: 'Regulations' },
     ]} />
 
-    <h1 class="text-3xl font-extrabold text-gray-900 mb-6">Septic Regulations in {data.name}, MA</h1>
+    <h1 class="text-3xl font-extrabold text-gray-900 mb-4">Septic Regulations in {data.name}, MA</h1>
+
+    <!-- Regulations intro -->
+    {data.regulationsIntro && (
+      <p class="text-gray-700 mb-6">{data.regulationsIntro}</p>
+    )}
 
     <!-- Regulatory body -->
     <div class="bg-white border border-gray-200 rounded-lg p-5 mb-6 text-sm">
