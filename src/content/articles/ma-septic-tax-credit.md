@@ -55,6 +55,8 @@ To be eligible, all of the following must be true:
 
 The income phase-out works proportionally: at $100,000 household income (halfway through the phase-out range), you'd receive 50% of the maximum credit — up to $3,000 total instead of $6,000.
 
+If you're in the phase-out range and need to act fast, a failed Title 5 inspection doesn't wait for tax planning. If your household income falls between $75,000 and $125,000 and your Board of Health has ordered a repair, you still need to move quickly — the BOH will set a compliance deadline regardless of your financial situation. In this case, the [MassHousing Septic Loan](#the-masshousing-septic-loan-program) is worth looking at immediately even if your tax credit will be reduced or eliminated. The loan has more generous income limits than the credit, so you may qualify for financing even if the credit phases out entirely for you. A partial credit is still worth claiming — at $90,000 household income you'd still receive roughly $3,000 total over four years, which is real money on a $20,000+ repair bill. Get the contractor lined up and the permit pulled first. Sort out the financing and tax strategy in parallel.
+
 ## What Qualifies as a "Repair or Replacement"
 
 The following types of work qualify for the credit:
