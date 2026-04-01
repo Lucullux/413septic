@@ -24,7 +24,7 @@ faqItems:
   - question: "What documentation do I need to claim the credit?"
     answer: "You'll need: a copy of the Title 5 inspection showing the system is failing or non-conforming, the Board of Health permit for the repair or replacement, and invoices from the licensed contractor showing what was done and the cost. Keep these on file — you'll reference them over multiple tax years."
 showPumpReminderCTA: false
-showDirectoryCTA: false
+showDirectoryCTA: true
 ---
 
 If your Massachusetts home has a failing septic system and you're facing a major repair or replacement bill, the state's Septic Repair Tax Credit can offset a meaningful chunk of that cost. Here's how the credit works, what qualifies, what doesn't, and how to claim it.
@@ -64,6 +64,7 @@ The following types of work qualify for the credit:
 - Leach field replacement or expansion ordered due to Title 5 failure
 - Distribution box replacement as part of a permitted repair
 - Pump system installation as part of a Title 5 remediation
+
 
 **What does NOT qualify:**
 
