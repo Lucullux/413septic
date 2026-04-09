@@ -6,6 +6,17 @@
   NODE_VERSION = "22"
 
 [[redirects]]
+  from = "http://413septic.com/*"
+  to = "https://413septic.com/:splat"
+  force = true
+
+[[redirects]]
+  from = "https://413septic.com/*[^/]"
+  to = "https://413septic.com/:splat/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 404

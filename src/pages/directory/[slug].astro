@@ -169,43 +169,53 @@ const schema = {
           </div>
         )}
 
-        <!-- Featured: Lead Capture -->
-        {data.tier === 'featured' && (
-          <div class="bg-earth-50 border border-earth-200 rounded-lg p-5">
-            <h2 class="text-lg font-bold text-gray-800 mb-3">Request a Quote</h2>
-            <form action="/contact/" method="post" class="space-y-3">
-              <input type="hidden" name="contractor" value={data.name} />
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <label class="block text-xs font-medium text-gray-700 mb-1">Name</label>
-                  <input type="text" name="name" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-gray-700 mb-1">Phone</label>
-                  <input type="tel" name="phone" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
-                </div>
+        <!-- Contact / Quote Form (Netlify) -->
+        <div class="bg-earth-50 border border-earth-200 rounded-lg p-5">
+          <h2 class="text-lg font-bold text-gray-800 mb-3">Send a Message</h2>
+          <form name="contractor-inquiry" method="POST" netlify class="space-y-3">
+            <input type="hidden" name="form-name" value="contractor-inquiry" />
+            <input type="hidden" name="contractor" value={data.name} />
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Contractor</label>
+              <input type="text" value={data.name} disabled class="w-full border border-gray-200 rounded px-3 py-2 text-sm bg-gray-100 text-gray-500 cursor-not-allowed" />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Your name</label>
+                <input type="text" name="name" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
               </div>
               <div>
-                <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" name="email" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
+                <label class="block text-xs font-medium text-gray-700 mb-1">Phone</label>
+                <input type="tel" name="phone" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
               </div>
-              <div>
-                <label class="block text-xs font-medium text-gray-700 mb-1">Service needed</label>
-                <select name="service" class="w-full border border-gray-300 rounded px-3 py-2 text-sm bg-white">
-                  <option value="">Select a service...</option>
-                  {contractorServices.map(s => <option value={s.data.slug}>{s.data.name}</option>)}
-                </select>
-              </div>
-              <div>
-                <label class="block text-xs font-medium text-gray-700 mb-1">Brief description</label>
-                <textarea name="message" rows={3} class="w-full border border-gray-300 rounded px-3 py-2 text-sm resize-none"></textarea>
-              </div>
-              <button type="submit" class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-2.5 rounded transition-colors text-sm">
-                Send Quote Request
-              </button>
-            </form>
-          </div>
-        )}
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" name="email" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Service needed</label>
+              <select name="service" class="w-full border border-gray-300 rounded px-3 py-2 text-sm bg-white">
+                <option value="">Select a service...</option>
+                {contractorServices.map(s => <option value={s.data.slug}>{s.data.name}</option>)}
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Your town</label>
+              <select name="town" class="w-full border border-gray-300 rounded px-3 py-2 text-sm bg-white">
+                <option value="">Select a town...</option>
+                {contractorTowns.map(t => <option value={t.data.slug}>{t.data.name}</option>)}
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-gray-700 mb-1">Message</label>
+              <textarea name="message" rows={3} class="w-full border border-gray-300 rounded px-3 py-2 text-sm resize-none" placeholder="Describe what you need..."></textarea>
+            </div>
+            <button type="submit" class="w-full bg-accent-500 hover:bg-accent-600 text-white font-bold py-2.5 rounded transition-colors text-sm">
+              Send Message
+            </button>
+          </form>
+        </div>
       </div>
 
       <!-- Sidebar -->
