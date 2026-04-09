@@ -26,7 +26,10 @@ townsServed:
   - northfield
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  L & F Construction is an Orange-based contractor offering septic system installation, replacement, perc testing, leach field repair, and pump replacement across six towns in the southeastern portion of Franklin County. Note that their operational status is currently unconfirmed - we recommend verifying they're active before scheduling.
+
+  For homeowners in Orange and surrounding towns looking for a local excavating contractor for septic system work, L & F covers the core services needed for both new construction and failing system replacement.
 photos: null
 emergencyService: false
 portableToilets: false

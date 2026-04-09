@@ -23,7 +23,10 @@ townsServed:
   - orange
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Kevin Komosa Enterprises is a Northfield-based pumping and inspection service covering six towns in the eastern part of Franklin County, near the New Hampshire border. They offer septic pumping and Title 5 inspections - a focused scope that suits homeowners with straightforward maintenance needs.
+
+  Their location in Northfield makes them particularly accessible to homeowners in the Connecticut River valley towns on the eastern edge of the county.
 photos: null
 emergencyService: false
 portableToilets: false

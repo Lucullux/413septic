@@ -33,7 +33,10 @@ townsServed:
   - erving
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  River Valley Excavating is a Greenfield-based contractor with one of the widest service footprints in the county, covering eleven towns and offering 24/7 emergency availability. Their work spans system design, new installations, full replacements, leach field repair, pipe repair, and perc testing.
+
+  The combination of emergency availability and full-system capability makes them a strong option for homeowners who need a single contractor that can handle both urgent situations and long-term system planning.
 photos: null
 emergencyService: true
 portableToilets: false

@@ -28,7 +28,10 @@ townsServed:
   - conway
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Harris & Gray Excavating is a Deerfield-based contractor focused on the design and installation side of septic work. They handle new system installations, full replacements, perc testing, system design, and leach field repair across eight Franklin County towns.
+
+  As an excavating-first operation, they're built for the heavy work - site prep, soil evaluation, and system construction - rather than routine maintenance. Homeowners planning a new build, an addition, or dealing with a failed system that needs full replacement will find them well-suited to the job.
 photos: null
 emergencyService: false
 portableToilets: false

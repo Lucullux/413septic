@@ -21,7 +21,10 @@ townsServed:
   - deerfield
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Superior Septic Services is a Greenfield-based pumping and inspection company offering septic pumping, Title 5 inspections, and filter cleaning. Note that their current operational status is uncertain - we recommend calling ahead to confirm they're taking new customers before scheduling service.
+
+  They serve three towns in the Greenfield area, making them a local option for routine maintenance needs if confirmed active.
 photos: null
 emergencyService: false
 portableToilets: false

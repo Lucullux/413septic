@@ -25,7 +25,10 @@ townsServed:
   - northfield
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Robert Adair Septic Services is an Orange-based operation offering pumping, Title 5 inspections, effluent filter cleaning, and baffle repair across six towns in southeastern Franklin County. The combination of pumping and baffle repair under one roof is convenient - both services are often identified during the same pump-out visit.
+
+  For homeowners in the Orange area looking for a maintenance-focused provider who can handle both routine and minor repair work, Adair covers the essentials.
 photos: null
 emergencyService: false
 portableToilets: false

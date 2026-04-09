@@ -28,7 +28,10 @@ townsServed:
   - ashfield
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Homestead, Inc. is a Charlemont-based contractor serving the upper Pioneer Valley with a range of septic services including new installations, full system replacements, perc testing, leach field repair, and routine pumping. Their location in Charlemont puts them squarely in the heart of the hill town corridor.
+
+  For homeowners in the more remote western towns of Franklin County who want a contractor actually based in the area rather than driving out from Greenfield, Homestead is a practical local option.
 photos: null
 emergencyService: false
 portableToilets: false

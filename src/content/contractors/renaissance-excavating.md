@@ -27,7 +27,10 @@ townsServed:
   - hawley
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Renaissance Excavating is a Buckland-based contractor specializing in septic system design, installation, and repair. Their services include new installations, full system replacements, perc testing, system design, and leach field repair across seven towns.
+
+  Buckland's location in the hill towns makes Renaissance a natural fit for homeowners in the more rugged western terrain of Franklin County, where soil variability and slope make experienced local excavating knowledge particularly important.
 photos: null
 emergencyService: false
 portableToilets: false

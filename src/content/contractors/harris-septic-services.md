@@ -33,7 +33,10 @@ townsServed:
   - gill
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Harris Septic Services is one of the more full-service operations in Franklin County, covering everything from routine pumping and Title 5 inspections to new system design and installation. Based in Greenfield, they serve ten towns across the county and offer 24/7 emergency response.
+
+  Their breadth of services means a homeowner can use them across the lifecycle of a septic system - from initial design and installation through ongoing maintenance and eventual replacement - without having to coordinate between multiple contractors.
 photos: null
 emergencyService: true
 portableToilets: false

@@ -25,7 +25,10 @@ townsServed:
   - rowe
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Bostley Sanitary Service is a septic pumping and inspection company based in Colrain, serving the hill towns of western Franklin County. Their service area covers some of the county's more rural terrain - including Rowe, Hawley, and Heath - where reliable septic contractors are harder to come by.
+
+  They offer routine septic pumping and Title 5 inspections, making them a practical choice for homeowners in the upper Pioneer Valley who need a local provider familiar with the conditions and soil types common to that part of the county.
 photos: null
 emergencyService: false
 portableToilets: false

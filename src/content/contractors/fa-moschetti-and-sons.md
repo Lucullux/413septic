@@ -28,7 +28,10 @@ townsServed:
   - conway
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  F.A. Moschetti & Sons is one of Franklin County's longest-standing septic contractors, with over 50 years of operation in the Pioneer Valley. Based in Sunderland, they handle the full range of septic system work - from new installations and full system replacements to perc testing, leach field repair, and cesspool-to-septic conversions.
+
+  Their decades of experience working in this specific region means they understand local soil conditions, BOH requirements, and the particular challenges that come with western Massachusetts terrain. For homeowners dealing with aging systems or planning significant property changes, Moschetti is a well-established name worth contacting.
 photos: null
 emergencyService: false
 portableToilets: false

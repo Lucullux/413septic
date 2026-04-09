@@ -26,7 +26,10 @@ townsServed:
   - whately
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Karl's Excavating operates out of Shelburne and handles septic system installation, replacement, leach field repair, and perc testing across seven towns in the northern part of the county. As an excavating-focused operation, they're oriented toward ground-up system work rather than routine maintenance.
+
+  Their Shelburne base gives them natural coverage across the Deerfield River corridor towns - Buckland, Charlemont, and surrounding communities where excavating contractors with local familiarity are valuable.
 photos: null
 emergencyService: false
 portableToilets: false

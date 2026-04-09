@@ -25,7 +25,10 @@ townsServed:
   - leyden
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Greg's Wastewater Removal is a Gill-based septic service handling pumping, Title 5 inspections, and effluent filter cleaning across seven Franklin County towns. The inclusion of filter cleaning alongside pumping and inspection services suggests a maintenance-focused operation that goes a step beyond the basics.
+
+  Based in Gill on the Connecticut River, they're positioned to serve both the river valley towns and surrounding communities efficiently.
 photos: null
 emergencyService: false
 portableToilets: false

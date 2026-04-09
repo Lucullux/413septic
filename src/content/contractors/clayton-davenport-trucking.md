@@ -23,7 +23,10 @@ townsServed:
   - shelburne
 licensedIn: []
 description: null
-longDescription: null
+longDescription: |
+  Clayton Davenport Trucking is a Colrain-based operation focused on septic pumping across seven hill towns in the northwestern part of Franklin County. They're a straightforward pumping service without the broader installation or inspection services offered by larger contractors.
+
+  For homeowners in Colrain and surrounding towns who simply need a reliable pump-out on a regular schedule, Davenport is a local option worth knowing.
 photos: null
 emergencyService: false
 portableToilets: true
